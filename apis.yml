@@ -1,0 +1,280 @@
+aid: hathora
+url: https://raw.githubusercontent.com/api-evangelist/hathora/refs/heads/main/apis.yml
+name: Hathora
+kind: company
+description: Hathora provides on-demand, globally distributed dedicated compute for
+  multiplayer games. Hathora Cloud spins game server processes up and down across
+  regions in response to player demand, exposing a REST API to manage applications,
+  builds, deployments, processes, rooms, discovery/ping, logs, metrics, billing, and
+  organization tokens, plus a player-authentication surface that issues short-lived
+  player tokens.
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+- Game Servers
+- Multiplayer
+- Compute
+- Hosting
+- Orchestration
+created: '2026-07-01'
+modified: '2026-07-01'
+specificationVersion: '0.19'
+apis:
+- aid: hathora:hathora-auth-api
+  name: Hathora Auth API
+  tags:
+  - Authentication
+  - Player Tokens
+  - JWT
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://hathora.dev/docs/api-reference/auth-v1
+  baseURL: https://api.hathora.dev
+  properties:
+  - url: https://hathora.dev/docs
+    type: Documentation
+  - url: https://hathora.dev/api#tag/AuthV1
+    type: APIReference
+  - url: openapi/hathora-openapi.yml
+    type: OpenAPI
+  - url: collections/hathora.postman_collection.json
+    type: PostmanCollection
+  - url: collections/hathora.opencollection.json
+    type: OpenCollection
+  description: Issues short-lived player tokens for game clients via anonymous, nickname,
+    and Google OIDC login flows, used to authorize room and lobby operations.
+- aid: hathora:hathora-apps-api
+  name: Hathora Apps API
+  tags:
+  - Applications
+  - Management
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://hathora.dev/docs/api-reference/apps-v2
+  baseURL: https://api.hathora.dev
+  properties:
+  - url: https://hathora.dev/docs
+    type: Documentation
+  - url: https://hathora.dev/api#tag/AppsV2
+    type: APIReference
+  - url: openapi/hathora-openapi.yml
+    type: OpenAPI
+  - url: collections/hathora.postman_collection.json
+    type: PostmanCollection
+  - url: collections/hathora.opencollection.json
+    type: OpenCollection
+  description: Create, list, read, update, and delete the applications that group your
+    game server builds, deployments, and processes under an organization.
+- aid: hathora:hathora-builds-api
+  name: Hathora Builds API
+  tags:
+  - Builds
+  - Container Images
+  - Deploy
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://hathora.dev/docs/api-reference/builds-v3
+  baseURL: https://api.hathora.dev
+  properties:
+  - url: https://hathora.dev/docs
+    type: Documentation
+  - url: https://hathora.dev/api#tag/BuildsV3
+    type: APIReference
+  - url: openapi/hathora-openapi.yml
+    type: OpenAPI
+  - url: collections/hathora.postman_collection.json
+    type: PostmanCollection
+  - url: collections/hathora.opencollection.json
+    type: OpenCollection
+  description: Create a build, upload a game server tarball, run the build into a container
+    image, and list, inspect, or delete builds for an application.
+- aid: hathora:hathora-deployments-api
+  name: Hathora Deployments API
+  tags:
+  - Deployments
+  - Runtime Configuration
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://hathora.dev/docs/api-reference/deployments-v3
+  baseURL: https://api.hathora.dev
+  properties:
+  - url: https://hathora.dev/docs
+    type: Documentation
+  - url: https://hathora.dev/api#tag/DeploymentsV3
+    type: APIReference
+  - url: openapi/hathora-openapi.yml
+    type: OpenAPI
+  - url: collections/hathora.postman_collection.json
+    type: PostmanCollection
+  - url: collections/hathora.opencollection.json
+    type: OpenCollection
+  description: Create and read deployments - the versioned runtime configuration (CPU,
+    memory, transport, ports, env, rooms-per-process, idle timeout) that binds a build
+    to how new processes run.
+- aid: hathora:hathora-processes-api
+  name: Hathora Processes API
+  tags:
+  - Processes
+  - Compute
+  - Lifecycle
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://hathora.dev/docs/api-reference/processes-v3
+  baseURL: https://api.hathora.dev
+  properties:
+  - url: https://hathora.dev/docs
+    type: Documentation
+  - url: https://hathora.dev/api#tag/ProcessesV3
+    type: APIReference
+  - url: openapi/hathora-openapi.yml
+    type: OpenAPI
+  - url: collections/hathora.postman_collection.json
+    type: PostmanCollection
+  - url: collections/hathora.opencollection.json
+    type: OpenCollection
+  description: Start game server processes in a chosen region, list latest processes,
+    read process details (host, port, allocation, status), and stop a running process.
+- aid: hathora:hathora-rooms-api
+  name: Hathora Rooms API
+  tags:
+  - Rooms
+  - Matchmaking
+  - Connection Info
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://hathora.dev/docs/api-reference/rooms-v2
+  baseURL: https://api.hathora.dev
+  properties:
+  - url: https://hathora.dev/docs
+    type: Documentation
+  - url: https://hathora.dev/api#tag/RoomsV2
+    type: APIReference
+  - url: openapi/hathora-openapi.yml
+    type: OpenAPI
+  - url: collections/hathora.postman_collection.json
+    type: PostmanCollection
+  - url: collections/hathora.opencollection.json
+    type: OpenCollection
+  description: Create rooms on running processes, poll for connection info (host/port),
+    read room status, and destroy rooms - the unit game clients connect to for a match.
+- aid: hathora:hathora-discovery-api
+  name: Hathora Discovery API
+  tags:
+  - Discovery
+  - Ping
+  - Latency
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://hathora.dev/docs/api-reference/discovery-v2
+  baseURL: https://api.hathora.dev
+  properties:
+  - url: https://hathora.dev/docs
+    type: Documentation
+  - url: https://hathora.dev/api#tag/DiscoveryV2
+    type: APIReference
+  - url: openapi/hathora-openapi.yml
+    type: OpenAPI
+  - url: collections/hathora.postman_collection.json
+    type: PostmanCollection
+  - url: collections/hathora.opencollection.json
+    type: OpenCollection
+  description: Returns every region with a host and port that a game client can directly
+    ping, enabling latency-based routing to the nearest region.
+- aid: hathora:hathora-logs-api
+  name: Hathora Logs API
+  tags:
+  - Logs
+  - Observability
+  - Streaming
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://hathora.dev/docs/api-reference/logs-v1
+  baseURL: https://api.hathora.dev
+  properties:
+  - url: https://hathora.dev/docs
+    type: Documentation
+  - url: https://hathora.dev/api#tag/LogsV1
+    type: APIReference
+  - url: openapi/hathora-openapi.yml
+    type: OpenAPI
+  - url: collections/hathora.postman_collection.json
+    type: PostmanCollection
+  - url: collections/hathora.opencollection.json
+    type: OpenCollection
+  description: Stream live logs for a running process and download the full log file
+    for a stopped process, keyed by appId and processId.
+- aid: hathora:hathora-metrics-api
+  name: Hathora Metrics API
+  tags:
+  - Metrics
+  - Monitoring
+  - Telemetry
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://hathora.dev/docs/api-reference/metrics-v1
+  baseURL: https://api.hathora.dev
+  properties:
+  - url: https://hathora.dev/docs
+    type: Documentation
+  - url: https://hathora.dev/api#tag/MetricsV1
+    type: APIReference
+  - url: openapi/hathora-openapi.yml
+    type: OpenAPI
+  - url: collections/hathora.postman_collection.json
+    type: PostmanCollection
+  - url: collections/hathora.opencollection.json
+    type: OpenCollection
+  description: Read time-series metrics for a process - CPU, memory, egress rate, total
+    egress, and active connections - to monitor game server health and capacity.
+- aid: hathora:hathora-billing-api
+  name: Hathora Billing API
+  tags:
+  - Billing
+  - Invoices
+  - Payments
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://hathora.dev/docs/api-reference/billing-v1
+  baseURL: https://api.hathora.dev
+  properties:
+  - url: https://hathora.dev/docs
+    type: Documentation
+  - url: https://hathora.dev/api#tag/BillingV1
+    type: APIReference
+  - url: openapi/hathora-openapi.yml
+    type: OpenAPI
+  - url: collections/hathora.postman_collection.json
+    type: PostmanCollection
+  - url: collections/hathora.opencollection.json
+    type: OpenCollection
+  description: Read account balance and invoice history, view the stored payment method,
+    and initialize a Stripe customer portal URL for self-service billing management.
+- aid: hathora:hathora-tokens-api
+  name: Hathora Tokens API
+  tags:
+  - Tokens
+  - Organization
+  - API Keys
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://hathora.dev/docs/api-reference/tokens-v1
+  baseURL: https://api.hathora.dev
+  properties:
+  - url: https://hathora.dev/docs
+    type: Documentation
+  - url: https://hathora.dev/api#tag/TokensV1
+    type: APIReference
+  - url: openapi/hathora-openapi.yml
+    type: OpenAPI
+  - url: collections/hathora.postman_collection.json
+    type: PostmanCollection
+  - url: collections/hathora.opencollection.json
+    type: OpenCollection
+  description: Create, list, and revoke the organization API tokens (hathoraDevToken)
+    used as bearer credentials for the management endpoints of the Hathora Cloud API.
+common:
+- type: GitHubOrganization
+  url: https://github.com/hathora
+- type: LinkedIn
+  url: https://www.linkedin.com/company/hathora
+- type: Website
+  url: https://hathora.dev/
+- type: Documentation
+  url: https://hathora.dev/docs
+- type: Plans
+  url: plans/hathora-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/hathora-rate-limits.yml
+- type: FinOps
+  url: finops/hathora-finops.yml
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

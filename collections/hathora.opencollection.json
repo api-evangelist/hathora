@@ -1,0 +1,539 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Hathora Cloud API",
+    "version": "3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "AuthV1",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Returns a unique player token for an anonymous user.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.hathora.dev/auth/v1/{appId}/login/anonymous"
+          },
+          "docs": "Returns a unique player token for an anonymous user."
+        },
+        {
+          "info": {
+            "name": "Returns a unique player token with a specified nickname.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.hathora.dev/auth/v1/{appId}/login/nickname",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns a unique player token with a specified nickname."
+        },
+        {
+          "info": {
+            "name": "Returns a unique player token using a Google-signed OIDC idToken.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.hathora.dev/auth/v1/{appId}/login/google",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns a unique player token using a Google-signed OIDC idToken."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "AppsV2",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Returns an unsorted list of your organization's applications.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.hathora.dev/apps/v2/list"
+          },
+          "docs": "Returns an unsorted list of your organization's applications."
+        },
+        {
+          "info": {
+            "name": "Create a new application.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.hathora.dev/apps/v2/create",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new application."
+        },
+        {
+          "info": {
+            "name": "Update data for an existing application.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.hathora.dev/apps/v2/update/{appId}",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update data for an existing application."
+        },
+        {
+          "info": {
+            "name": "Get details for an application.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.hathora.dev/apps/v2/info/{appId}"
+          },
+          "docs": "Get details for an application."
+        },
+        {
+          "info": {
+            "name": "Delete an application using appId. Your organization will lose access.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.hathora.dev/apps/v2/delete/{appId}"
+          },
+          "docs": "Delete an application using appId. Your organization will lose access."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "BuildsV3",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Returns an array of builds for an application.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.hathora.dev/builds/v3/{appId}/list"
+          },
+          "docs": "Returns an array of builds for an application."
+        },
+        {
+          "info": {
+            "name": "Creates a new build. Responds with a buildId that you must pass to RunBuild.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.hathora.dev/builds/v3/{appId}/create",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new build. Responds with a buildId that you must pass to RunBuild."
+        },
+        {
+          "info": {
+            "name": "Builds a game server artifact from a tarball you provide.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.hathora.dev/builds/v3/{appId}/run/{buildId}",
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "Builds a game server artifact from a tarball you provide."
+        },
+        {
+          "info": {
+            "name": "Get details for a build.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.hathora.dev/builds/v3/{appId}/info/{buildId}"
+          },
+          "docs": "Get details for a build."
+        },
+        {
+          "info": {
+            "name": "Delete a build. All associated metadata is deleted.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.hathora.dev/builds/v3/{appId}/delete/{buildId}"
+          },
+          "docs": "Delete a build. All associated metadata is deleted."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "DeploymentsV3",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Returns an array of deployments for an application.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.hathora.dev/deployments/v3/{appId}/list"
+          },
+          "docs": "Returns an array of deployments for an application."
+        },
+        {
+          "info": {
+            "name": "Create a new deployment. All new processes for the app will use the latest deployment configuration.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.hathora.dev/deployments/v3/{appId}/create/{buildId}",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new deployment. All new processes for the app will use the latest deployment configuration."
+        },
+        {
+          "info": {
+            "name": "Get the latest deployment for an application.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.hathora.dev/deployments/v3/{appId}/latest"
+          },
+          "docs": "Get the latest deployment for an application."
+        },
+        {
+          "info": {
+            "name": "Get details for a deployment.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.hathora.dev/deployments/v3/{appId}/info/{deploymentId}"
+          },
+          "docs": "Get details for a deployment."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "ProcessesV3",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve the latest process objects for an application.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.hathora.dev/processes/v3/{appId}/list/latest"
+          },
+          "docs": "Retrieve the latest process objects for an application."
+        },
+        {
+          "info": {
+            "name": "Start a new process in a specific region.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.hathora.dev/processes/v3/{appId}/create",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Start a new process in a specific region."
+        },
+        {
+          "info": {
+            "name": "Get details for a process.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.hathora.dev/processes/v3/{appId}/info/{processId}"
+          },
+          "docs": "Get details for a process."
+        },
+        {
+          "info": {
+            "name": "Stop a running process.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.hathora.dev/processes/v3/{appId}/stop/{processId}"
+          },
+          "docs": "Stop a running process."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "RoomsV2",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a new room for an application.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.hathora.dev/rooms/v2/{appId}/create",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new room for an application."
+        },
+        {
+          "info": {
+            "name": "Get details for a room.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.hathora.dev/rooms/v2/{appId}/info/{roomId}"
+          },
+          "docs": "Get details for a room."
+        },
+        {
+          "info": {
+            "name": "Poll this endpoint to get connection details for an active room.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.hathora.dev/rooms/v2/{appId}/connectioninfo/{roomId}"
+          },
+          "docs": "Poll this endpoint to get connection details for an active room."
+        },
+        {
+          "info": {
+            "name": "Destroy a room. All associated metadata is deleted.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.hathora.dev/rooms/v2/{appId}/destroy/{roomId}"
+          },
+          "docs": "Destroy a room. All associated metadata is deleted."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "DiscoveryV2",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Returns an array of all regions with a host and port that a client can directly ping for latency-based routing.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.hathora.dev/discovery/v2/ping"
+          },
+          "docs": "Returns an array of all regions with a host and port that a client can directly ping for latency-based routing."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "LogsV1",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Returns a stream of logs for a process using appId and processId.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.hathora.dev/logs/v1/{appId}/process/{processId}"
+          },
+          "docs": "Returns a stream of logs for a process using appId and processId."
+        },
+        {
+          "info": {
+            "name": "Download the log file for a stopped process.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.hathora.dev/logs/v1/{appId}/process/{processId}/download"
+          },
+          "docs": "Download the log file for a stopped process."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "MetricsV1",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get metrics for a process using appId and processId.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.hathora.dev/metrics/v1/{appId}/process/{processId}"
+          },
+          "docs": "Get metrics for a process using appId and processId."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "BillingV1",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get the current account balance.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.hathora.dev/billing/v1/balance"
+          },
+          "docs": "Get the current account balance."
+        },
+        {
+          "info": {
+            "name": "Retrieve invoice history.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.hathora.dev/billing/v1/invoices"
+          },
+          "docs": "Retrieve invoice history."
+        },
+        {
+          "info": {
+            "name": "Get stored payment method details.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.hathora.dev/billing/v1/paymentmethod"
+          },
+          "docs": "Get stored payment method details."
+        },
+        {
+          "info": {
+            "name": "Initialize a Stripe customer portal URL.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.hathora.dev/billing/v1/customerportalurl"
+          },
+          "docs": "Initialize a Stripe customer portal URL."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "TokensV1",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Returns an unsorted list of an organization's API tokens.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.hathora.dev/tokens/v1/{orgId}/list"
+          },
+          "docs": "Returns an unsorted list of an organization's API tokens."
+        },
+        {
+          "info": {
+            "name": "Create a new organization API token.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.hathora.dev/tokens/v1/{orgId}/create",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new organization API token."
+        },
+        {
+          "info": {
+            "name": "Revoke an organization API token.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.hathora.dev/tokens/v1/{orgId}/revoke/{orgTokenId}"
+          },
+          "docs": "Revoke an organization API token."
+        }
+      ]
+    }
+  ]
+}

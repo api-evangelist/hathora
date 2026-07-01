@@ -1,0 +1,125 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Hathora
+providerId: hathora
+created: '2026-07-01'
+modified: '2026-07-01'
+reconciled: false
+tags:
+- Game Servers
+- Multiplayer
+- Compute
+- Hosting
+- Orchestration
+- Plans
+description: >-
+  Hathora Cloud used a usage-based pricing model: you paid for the compute a
+  game server process consumed (metered by requested vCPU and memory) plus
+  per-GB network egress, with billing accrued only while processes ran. An
+  Explore free tier let developers build and playtest with limits; a Pro tier
+  removed those limits with published usage rates; Enterprise offered custom
+  volume pricing and self-hosted / bring-your-own-cloud options.
+notes: >-
+  IMPORTANT / HONESTY NOTE: Hathora announced it was winding down its public
+  Hathora Cloud offering (shutdown around 2026-05-05) as the team moved to
+  GameFabric; hathora.dev/pricing now redirects to gamefabric.com. Exact
+  historical per-vCPU and per-GB-egress rates were not consistently published
+  (Pro/Enterprise rates were partly quote-based). Values below are structural
+  and directional; verify current terms with GameFabric before relying on them.
+sources:
+- https://hathora.dev/pricing
+- https://hathora.dev/docs/pricing-billing
+- https://hathora.dev/docs
+plans:
+- id: hathora-explore
+  name: Explore (Free Tier)
+  type: free
+  description: >-
+    Free tier for building and playtesting - deploy apps, upload builds, and
+    run a limited amount of concurrent compute across regions at no charge.
+  entries:
+  - label: Included Compute
+    name: explore_compute
+    type: free
+    metric: process_hours
+    limit: 0
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: free within Explore-tier limits
+    userMultiplied: false
+  elements:
+  - name: Apps
+  - name: Builds
+  - name: Deployments
+  - name: Processes
+  - name: Rooms
+  - name: Discovery / Ping
+  - name: Logs
+  - name: Metrics
+- id: hathora-pro
+  name: Pro (Usage-Based)
+  type: usage
+  description: >-
+    Removes Explore-tier limits and bills usage-based for compute and egress,
+    metered while processes run. Rates were partly published, partly quoted.
+  entries:
+  - label: Compute (vCPU)
+    name: compute_vcpu
+    type: usage
+    metric: vcpu_hours
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: per requested vCPU-hour (see provider - rate quoted)
+    userMultiplied: false
+  - label: Compute (Memory)
+    name: compute_memory
+    type: usage
+    metric: gb_hours
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: per requested GB-hour of memory (see provider - rate quoted)
+    userMultiplied: false
+  - label: Network Egress
+    name: egress
+    type: usage
+    metric: gigabytes
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: per-GB egress (see provider - rate quoted)
+    userMultiplied: false
+  elements:
+  - name: All Explore features without free-tier limits
+  - name: Higher concurrency
+  - name: Priority support
+- id: hathora-enterprise
+  name: Enterprise
+  type: enterprise
+  description: >-
+    Volume commitments, custom regions, bring-your-own-cloud / self-hosted
+    deployment, dedicated support, and negotiated terms. Contact sales.
+  entries:
+  - label: Enterprise Agreement
+    name: enterprise
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: contact sales
+    userMultiplied: false
+  elements:
+  - name: Custom Volume Pricing
+  - name: Bring-Your-Own-Cloud
+  - name: Dedicated Support
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

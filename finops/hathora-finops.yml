@@ -1,0 +1,104 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Hathora
+providerId: hathora
+created: '2026-07-01'
+modified: '2026-07-01'
+reconciled: false
+tags:
+- Game Servers
+- Multiplayer
+- Compute
+- Hosting
+- Orchestration
+- FinOps
+- Cost Management
+- FOCUS
+description: >-
+  FinOps view of Hathora Cloud spend. Hathora billed usage-based for game
+  server compute - metered by requested vCPU and memory while a process ran -
+  plus per-GB network egress. Because processes scale to zero when idle,
+  compute cost tracks concurrent player demand. An Explore free tier absorbed
+  small workloads; Pro and Enterprise carried the metered rates.
+notes: >-
+  Rates were partly quote-based and Hathora Cloud has been winding down toward
+  GameFabric; verify current billing model and rates with the provider during
+  reconciliation. Meters below reflect the documented cost drivers.
+sources:
+- https://hathora.dev/docs/pricing-billing
+- https://hathora.dev/pricing
+- https://focus.finops.org/focus-specification/v1-3/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: Hathora
+serviceCategory: Compute
+billingModel:
+  pricingCategory: Usage-Based
+  billingFrequency: Monthly
+  billingCurrency: USD
+  chargeCategories:
+  - Usage
+  - Purchase
+  - Adjustment
+focusColumns:
+  ServiceName: Hathora Cloud
+  ServiceCategory: Compute
+  ProviderName: Hathora
+  PublisherName: Hathora
+  InvoiceIssuerName: Hathora
+  BillingCurrency: USD
+  ChargeCategory: Usage
+  PricingCategory: Usage-Based
+meters:
+- name: vcpu_hours
+  description: Requested vCPU-hours consumed by running processes, billed per vCPU-hour.
+  unit: vcpu_hours
+  aggregation: sum
+  dimensions:
+  - organization
+  - app
+  - region
+  - deployment
+- name: memory_gb_hours
+  description: Requested memory GB-hours consumed by running processes, billed per GB-hour.
+  unit: gb_hours
+  aggregation: sum
+  dimensions:
+  - organization
+  - app
+  - region
+  - deployment
+- name: network_egress_gb
+  description: Outbound network traffic from game server processes, billed per GB.
+  unit: gigabytes
+  aggregation: sum
+  dimensions:
+  - organization
+  - app
+  - region
+- name: process_runtime_seconds
+  description: Wall-clock seconds a process ran; the base unit compute charges are derived from.
+  unit: seconds
+  aggregation: sum
+  dimensions:
+  - organization
+  - app
+  - region
+  - process
+principles:
+- name: Visibility
+  description: Read process metrics (CPU, memory, egress, active connections) and invoices to attribute spend per app and region.
+- name: Allocation
+  description: Tag apps and org tokens per team/title; map processes and regions to internal cost centers.
+- name: Optimization
+  description: Right-size requested CPU/memory per deployment, tune roomsPerProcess for density, enable idle timeout so processes scale to zero, and choose regions to reduce egress.
+- name: Accountability
+  description: Assign owners per app/title; review compute and egress burn monthly against player-demand forecasts.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

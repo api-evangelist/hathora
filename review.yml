@@ -1,0 +1,109 @@
+aid: hathora
+name: Hathora
+review:
+  question: Does Hathora expose a documented public WebSocket API?
+  answer: false
+  date: '2026-07-01'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: |
+    No AsyncAPI document was created. The Hathora Cloud control-plane API is a
+    conventional REST API over HTTPS. Hathora's realtime game traffic runs over
+    raw TCP/UDP/TLS game-server transports negotiated per room (host + port
+    returned by GetConnectionInfo), not over a documented WebSocket message API
+    with an event-driven contract that AsyncAPI would model. Log endpoints
+    return HTTP streaming (NDJSON), which is one-way HTTP, not WebSocket.
+findings:
+  summary: |
+    Hathora does not publish a documented public WebSocket API on its control
+    plane. The Hathora Cloud API (https://api.hathora.dev) is REST/HTTPS:
+    apps, builds, deployments, processes, rooms, discovery/ping, logs, metrics,
+    billing, and org tokens, plus a player-auth surface that mints short-lived
+    player JWTs. Management endpoints authenticate with an organization
+    developer token (hathoraDevToken, HTTP bearer JWT); room/lobby client calls
+    use a player token (playerAuth, HTTP bearer JWT). The gameplay transport
+    itself is whatever the game server exposes (TCP, UDP, or TLS) on the
+    host/port returned by GetConnectionInfo - a game client may choose to speak
+    WebSocket to its own server over that port, but that is the customer's game
+    protocol, not a Hathora-documented WebSocket API. Log streaming is HTTP
+    streaming (NDJSON), not WebSocket.
+  stateNote: |
+    IMPORTANT: As of this review, Hathora is winding down its public Hathora
+    Cloud offering and moving to GameFabric; hathora.dev/pricing redirects to
+    gamefabric.com. The API structure captured here reflects the documented
+    Hathora Cloud REST API and its SDKs (hathora/cloud-sdk-typescript, -java,
+    -go, etc.) at their last public state. Verify live availability and terms
+    against GameFabric.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://api.hathora.dev
+      documented: true
+    - protocol: HTTP streaming (NDJSON)
+      scheme: https
+      note: Process log streaming via GET /logs/v1/{appId}/process/{processId}. One-way HTTP, not WebSocket.
+      documented: true
+    - protocol: Game transport (TCP / UDP / TLS)
+      scheme: tcp/udp/tls
+      note: Per-room gameplay transport on the host/port from GetConnectionInfo; set by the customer's game server, configured via deployment transportType.
+      documented: true
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: No Hathora-documented control-plane WebSocket API. Any WebSocket usage is the customer's own game protocol over the room's exposed port.
+  endpointsConfirmedRest:
+    - POST https://api.hathora.dev/auth/v1/{appId}/login/anonymous
+    - POST https://api.hathora.dev/auth/v1/{appId}/login/nickname
+    - POST https://api.hathora.dev/auth/v1/{appId}/login/google
+    - GET  https://api.hathora.dev/apps/v2/list
+    - POST https://api.hathora.dev/apps/v2/create
+    - POST https://api.hathora.dev/apps/v2/update/{appId}
+    - GET  https://api.hathora.dev/apps/v2/info/{appId}
+    - DELETE https://api.hathora.dev/apps/v2/delete/{appId}
+    - GET  https://api.hathora.dev/builds/v3/{appId}/list
+    - POST https://api.hathora.dev/builds/v3/{appId}/create
+    - POST https://api.hathora.dev/builds/v3/{appId}/run/{buildId}
+    - GET  https://api.hathora.dev/builds/v3/{appId}/info/{buildId}
+    - DELETE https://api.hathora.dev/builds/v3/{appId}/delete/{buildId}
+    - GET  https://api.hathora.dev/deployments/v3/{appId}/list
+    - POST https://api.hathora.dev/deployments/v3/{appId}/create/{buildId}
+    - GET  https://api.hathora.dev/deployments/v3/{appId}/latest
+    - GET  https://api.hathora.dev/deployments/v3/{appId}/info/{deploymentId}
+    - GET  https://api.hathora.dev/processes/v3/{appId}/list/latest
+    - POST https://api.hathora.dev/processes/v3/{appId}/create
+    - GET  https://api.hathora.dev/processes/v3/{appId}/info/{processId}
+    - POST https://api.hathora.dev/processes/v3/{appId}/stop/{processId}
+    - POST https://api.hathora.dev/rooms/v2/{appId}/create
+    - GET  https://api.hathora.dev/rooms/v2/{appId}/info/{roomId}
+    - GET  https://api.hathora.dev/rooms/v2/{appId}/connectioninfo/{roomId}
+    - POST https://api.hathora.dev/rooms/v2/{appId}/destroy/{roomId}
+    - GET  https://api.hathora.dev/discovery/v2/ping
+    - GET  https://api.hathora.dev/logs/v1/{appId}/process/{processId}
+    - GET  https://api.hathora.dev/metrics/v1/{appId}/process/{processId}
+    - GET  https://api.hathora.dev/billing/v1/balance
+    - GET  https://api.hathora.dev/billing/v1/invoices
+    - GET  https://api.hathora.dev/tokens/v1/{orgId}/list
+    - POST https://api.hathora.dev/tokens/v1/{orgId}/create
+    - PUT  https://api.hathora.dev/tokens/v1/{orgId}/revoke/{orgTokenId}
+sources:
+  - url: https://hathora.dev/docs
+    type: Documentation
+    note: Documents the REST base URL https://api.hathora.dev and the SDK auth model (hathoraDevToken / player token).
+  - url: https://github.com/hathora/cloud-sdk-typescript
+    type: SDK
+    note: TypeScript SDK enumerates the REST operations (AppsV2, BuildsV3, DeploymentsV3, ProcessesV3, RoomsV2, DiscoveryV2, LogsV1, MetricsV1, BillingV1, TokensV1). Base server https://api.hathora.dev.
+  - url: https://github.com/hathora/hathora-cloud-sdks
+    type: SDK
+    note: Multi-language SDK hub for the Hathora Cloud API; confirms REST-only control plane.
+actions:
+  asyncapiPath: null
+  apisYmlUpdated: true
+  reason: |
+    No WebSocket or event-driven message contract exists on the Hathora Cloud
+    control plane, so no AsyncAPI document was authored. The apis.yml catalogs
+    the REST management surface across eleven service areas; the OpenAPI
+    artifact models representative REST endpoints and both bearer security
+    schemes (hathoraDevToken, playerAuth).
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

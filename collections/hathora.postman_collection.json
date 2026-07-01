@@ -1,0 +1,1190 @@
+{
+  "item": [
+    {
+      "id": "43433262-c28a-4155-982f-497998abfd1e",
+      "name": "AuthV1",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9d155efe-b6e4-409b-9830-4cbf27814fce",
+          "name": "Returns a unique player token for an anonymous user.",
+          "request": {
+            "name": "Returns a unique player token for an anonymous user.",
+            "description": {},
+            "url": {
+              "path": [
+                "auth",
+                "v1",
+                "{appId}",
+                "login",
+                "anonymous"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [],
+            "method": "POST",
+            "auth": null
+          },
+          "response": []
+        },
+        {
+          "id": "9c9a8b31-507c-49b8-91c1-030980b858e9",
+          "name": "Returns a unique player token with a specified nickname.",
+          "request": {
+            "name": "Returns a unique player token with a specified nickname.",
+            "description": {},
+            "url": {
+              "path": [
+                "auth",
+                "v1",
+                "{appId}",
+                "login",
+                "nickname"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "id": "dae520f0-cef7-4072-9caf-e15612f4a135",
+          "name": "Returns a unique player token using a Google-signed OIDC idToken.",
+          "request": {
+            "name": "Returns a unique player token using a Google-signed OIDC idToken.",
+            "description": {},
+            "url": {
+              "path": [
+                "auth",
+                "v1",
+                "{appId}",
+                "login",
+                "google"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "id": "e620565c-5bc2-4e45-9c2b-d78c7dbcc1c2",
+      "name": "AppsV2",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2e41d467-953d-4f45-b83a-2eaf96739cd5",
+          "name": "Returns an unsorted list of your organization's applications.",
+          "request": {
+            "name": "Returns an unsorted list of your organization's applications.",
+            "description": {},
+            "url": {
+              "path": [
+                "apps",
+                "v2",
+                "list"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [],
+            "method": "GET",
+            "auth": null
+          },
+          "response": []
+        },
+        {
+          "id": "e1231a47-3584-4f3d-8df1-d91d1ade509d",
+          "name": "Create a new application.",
+          "request": {
+            "name": "Create a new application.",
+            "description": {},
+            "url": {
+              "path": [
+                "apps",
+                "v2",
+                "create"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "id": "86331f0e-4a7c-47f9-b0c6-665b10ae88f6",
+          "name": "Update data for an existing application.",
+          "request": {
+            "name": "Update data for an existing application.",
+            "description": {},
+            "url": {
+              "path": [
+                "apps",
+                "v2",
+                "update",
+                "{appId}"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "id": "0dc6ae93-8d18-4e7d-9007-a1b3f8cce512",
+          "name": "Get details for an application.",
+          "request": {
+            "name": "Get details for an application.",
+            "description": {},
+            "url": {
+              "path": [
+                "apps",
+                "v2",
+                "info",
+                "{appId}"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [],
+            "method": "GET",
+            "auth": null
+          },
+          "response": []
+        },
+        {
+          "id": "4deceae0-0765-4980-b915-592069e0f7c6",
+          "name": "Delete an application using appId. Your organization will lose access.",
+          "request": {
+            "name": "Delete an application using appId. Your organization will lose access.",
+            "description": {},
+            "url": {
+              "path": [
+                "apps",
+                "v2",
+                "delete",
+                "{appId}"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "id": "0cd62a60-56f0-4e66-b9c4-4f004f884126",
+      "name": "BuildsV3",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "74de2bf5-3f5c-4b32-be8e-82dc8b74cd07",
+          "name": "Returns an array of builds for an application.",
+          "request": {
+            "name": "Returns an array of builds for an application.",
+            "description": {},
+            "url": {
+              "path": [
+                "builds",
+                "v3",
+                "{appId}",
+                "list"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [],
+            "method": "GET",
+            "auth": null
+          },
+          "response": []
+        },
+        {
+          "id": "ca2a2fcb-2378-488d-bef8-c0428aab1d4a",
+          "name": "Creates a new build. Responds with a buildId that you must pass to RunBuild.",
+          "request": {
+            "name": "Creates a new build. Responds with a buildId that you must pass to RunBuild.",
+            "description": {},
+            "url": {
+              "path": [
+                "builds",
+                "v3",
+                "{appId}",
+                "create"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "id": "c38ffb4a-adc3-4f9b-8b21-bc2e09c2735f",
+          "name": "Builds a game server artifact from a tarball you provide.",
+          "request": {
+            "name": "Builds a game server artifact from a tarball you provide.",
+            "description": {},
+            "url": {
+              "path": [
+                "builds",
+                "v3",
+                "{appId}",
+                "run",
+                "{buildId}"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": []
+            }
+          },
+          "response": []
+        },
+        {
+          "id": "9025b32e-8bd1-4a0a-9714-06283834a2e8",
+          "name": "Get details for a build.",
+          "request": {
+            "name": "Get details for a build.",
+            "description": {},
+            "url": {
+              "path": [
+                "builds",
+                "v3",
+                "{appId}",
+                "info",
+                "{buildId}"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [],
+            "method": "GET",
+            "auth": null
+          },
+          "response": []
+        },
+        {
+          "id": "b2a61417-83f1-432d-89b4-ebaf3de803d3",
+          "name": "Delete a build. All associated metadata is deleted.",
+          "request": {
+            "name": "Delete a build. All associated metadata is deleted.",
+            "description": {},
+            "url": {
+              "path": [
+                "builds",
+                "v3",
+                "{appId}",
+                "delete",
+                "{buildId}"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "id": "00a282fb-749f-4549-8e09-c992931a846e",
+      "name": "DeploymentsV3",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3e0b4bcd-06a8-4a0c-889f-46b186620c6e",
+          "name": "Returns an array of deployments for an application.",
+          "request": {
+            "name": "Returns an array of deployments for an application.",
+            "description": {},
+            "url": {
+              "path": [
+                "deployments",
+                "v3",
+                "{appId}",
+                "list"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [],
+            "method": "GET",
+            "auth": null
+          },
+          "response": []
+        },
+        {
+          "id": "40b69161-fb1f-4779-84dd-0722efeebdac",
+          "name": "Create a new deployment. All new processes for the app will use the latest deployment configuration.",
+          "request": {
+            "name": "Create a new deployment. All new processes for the app will use the latest deployment configuration.",
+            "description": {},
+            "url": {
+              "path": [
+                "deployments",
+                "v3",
+                "{appId}",
+                "create",
+                "{buildId}"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "id": "35c1cf5e-5d04-4fd5-8d7c-f11e87df4ae9",
+          "name": "Get the latest deployment for an application.",
+          "request": {
+            "name": "Get the latest deployment for an application.",
+            "description": {},
+            "url": {
+              "path": [
+                "deployments",
+                "v3",
+                "{appId}",
+                "latest"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [],
+            "method": "GET",
+            "auth": null
+          },
+          "response": []
+        },
+        {
+          "id": "96b4665d-5d25-4045-88de-6045ffa5ae05",
+          "name": "Get details for a deployment.",
+          "request": {
+            "name": "Get details for a deployment.",
+            "description": {},
+            "url": {
+              "path": [
+                "deployments",
+                "v3",
+                "{appId}",
+                "info",
+                "{deploymentId}"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [],
+            "method": "GET",
+            "auth": null
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "id": "8480e156-632d-47b7-9a1a-0c6a826ed824",
+      "name": "ProcessesV3",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e5baa7f7-0722-4f08-8823-aa7840b9184d",
+          "name": "Retrieve the latest process objects for an application.",
+          "request": {
+            "name": "Retrieve the latest process objects for an application.",
+            "description": {},
+            "url": {
+              "path": [
+                "processes",
+                "v3",
+                "{appId}",
+                "list",
+                "latest"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [],
+            "method": "GET",
+            "auth": null
+          },
+          "response": []
+        },
+        {
+          "id": "11f9014b-771c-43ee-8ee6-469cf943109f",
+          "name": "Start a new process in a specific region.",
+          "request": {
+            "name": "Start a new process in a specific region.",
+            "description": {},
+            "url": {
+              "path": [
+                "processes",
+                "v3",
+                "{appId}",
+                "create"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "id": "82d767cb-6e87-4f14-b437-83a6e7c3bd9e",
+          "name": "Get details for a process.",
+          "request": {
+            "name": "Get details for a process.",
+            "description": {},
+            "url": {
+              "path": [
+                "processes",
+                "v3",
+                "{appId}",
+                "info",
+                "{processId}"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [],
+            "method": "GET",
+            "auth": null
+          },
+          "response": []
+        },
+        {
+          "id": "ceae3418-d60a-440a-90c4-e2b2c6f4ff0a",
+          "name": "Stop a running process.",
+          "request": {
+            "name": "Stop a running process.",
+            "description": {},
+            "url": {
+              "path": [
+                "processes",
+                "v3",
+                "{appId}",
+                "stop",
+                "{processId}"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [],
+            "method": "POST",
+            "auth": null
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "id": "c1e87f4f-19b6-4b11-b47c-c21fc4d64099",
+      "name": "RoomsV2",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "99520d60-dcba-487f-ac33-3514672c132c",
+          "name": "Create a new room for an application.",
+          "request": {
+            "name": "Create a new room for an application.",
+            "description": {},
+            "url": {
+              "path": [
+                "rooms",
+                "v2",
+                "{appId}",
+                "create"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "id": "d6ff7a6c-45d2-453e-b734-a9fc337b2bbb",
+          "name": "Get details for a room.",
+          "request": {
+            "name": "Get details for a room.",
+            "description": {},
+            "url": {
+              "path": [
+                "rooms",
+                "v2",
+                "{appId}",
+                "info",
+                "{roomId}"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [],
+            "method": "GET",
+            "auth": null
+          },
+          "response": []
+        },
+        {
+          "id": "3b55db19-0850-45b1-9495-13ffa3ddb107",
+          "name": "Poll this endpoint to get connection details for an active room.",
+          "request": {
+            "name": "Poll this endpoint to get connection details for an active room.",
+            "description": {},
+            "url": {
+              "path": [
+                "rooms",
+                "v2",
+                "{appId}",
+                "connectioninfo",
+                "{roomId}"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [],
+            "method": "GET",
+            "auth": null
+          },
+          "response": []
+        },
+        {
+          "id": "e80c816a-ab0d-4664-88b6-1d27e029d69f",
+          "name": "Destroy a room. All associated metadata is deleted.",
+          "request": {
+            "name": "Destroy a room. All associated metadata is deleted.",
+            "description": {},
+            "url": {
+              "path": [
+                "rooms",
+                "v2",
+                "{appId}",
+                "destroy",
+                "{roomId}"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [],
+            "method": "POST",
+            "auth": null
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "id": "3843289a-99a5-4bbd-b8d8-35c7eef23dfb",
+      "name": "DiscoveryV2",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "bc95057e-52dc-471c-9d95-b987c7387e20",
+          "name": "Returns an array of all regions with a host and port that a client can directly ping for latency-based routing.",
+          "request": {
+            "name": "Returns an array of all regions with a host and port that a client can directly ping for latency-based routing.",
+            "description": {},
+            "url": {
+              "path": [
+                "discovery",
+                "v2",
+                "ping"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [],
+            "method": "GET",
+            "auth": null
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "id": "09707ae7-6030-437d-9a79-8ccf617fc5fe",
+      "name": "LogsV1",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "464c9141-78d4-46f8-af8b-e95dba7d3cfe",
+          "name": "Returns a stream of logs for a process using appId and processId.",
+          "request": {
+            "name": "Returns a stream of logs for a process using appId and processId.",
+            "description": {},
+            "url": {
+              "path": [
+                "logs",
+                "v1",
+                "{appId}",
+                "process",
+                "{processId}"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [],
+            "method": "GET",
+            "auth": null
+          },
+          "response": []
+        },
+        {
+          "id": "3e2f9b7f-c8de-4d9f-82fe-7f55ae240aa6",
+          "name": "Download the log file for a stopped process.",
+          "request": {
+            "name": "Download the log file for a stopped process.",
+            "description": {},
+            "url": {
+              "path": [
+                "logs",
+                "v1",
+                "{appId}",
+                "process",
+                "{processId}",
+                "download"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [],
+            "method": "GET",
+            "auth": null
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "id": "8a978d9a-c7f5-42f4-b085-435247b557d9",
+      "name": "MetricsV1",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "379e200b-e950-422f-9614-b5d9bb3999e2",
+          "name": "Get metrics for a process using appId and processId.",
+          "request": {
+            "name": "Get metrics for a process using appId and processId.",
+            "description": {},
+            "url": {
+              "path": [
+                "metrics",
+                "v1",
+                "{appId}",
+                "process",
+                "{processId}"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [],
+            "method": "GET",
+            "auth": null
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "id": "5cf0e9c0-5965-4ca5-96ce-d79839a4c35b",
+      "name": "BillingV1",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3a5030c4-41f2-4031-947c-4813cb3575fe",
+          "name": "Get the current account balance.",
+          "request": {
+            "name": "Get the current account balance.",
+            "description": {},
+            "url": {
+              "path": [
+                "billing",
+                "v1",
+                "balance"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [],
+            "method": "GET",
+            "auth": null
+          },
+          "response": []
+        },
+        {
+          "id": "fbb37957-26ff-4a28-add2-6c37b47d47cf",
+          "name": "Retrieve invoice history.",
+          "request": {
+            "name": "Retrieve invoice history.",
+            "description": {},
+            "url": {
+              "path": [
+                "billing",
+                "v1",
+                "invoices"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [],
+            "method": "GET",
+            "auth": null
+          },
+          "response": []
+        },
+        {
+          "id": "a3f06702-b657-487b-aad4-e59194f68b41",
+          "name": "Get stored payment method details.",
+          "request": {
+            "name": "Get stored payment method details.",
+            "description": {},
+            "url": {
+              "path": [
+                "billing",
+                "v1",
+                "paymentmethod"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [],
+            "method": "GET",
+            "auth": null
+          },
+          "response": []
+        },
+        {
+          "id": "248497f5-21f5-4067-8f55-ba44730511e0",
+          "name": "Initialize a Stripe customer portal URL.",
+          "request": {
+            "name": "Initialize a Stripe customer portal URL.",
+            "description": {},
+            "url": {
+              "path": [
+                "billing",
+                "v1",
+                "customerportalurl"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [],
+            "method": "POST",
+            "auth": null
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "id": "a6072034-73af-40c1-b0ce-db2c3614b520",
+      "name": "TokensV1",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d3ad2a00-31ec-418e-93f0-b1e8e84fbec2",
+          "name": "Returns an unsorted list of an organization's API tokens.",
+          "request": {
+            "name": "Returns an unsorted list of an organization's API tokens.",
+            "description": {},
+            "url": {
+              "path": [
+                "tokens",
+                "v1",
+                "{orgId}",
+                "list"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [],
+            "method": "GET",
+            "auth": null
+          },
+          "response": []
+        },
+        {
+          "id": "c9a74820-025c-47e2-8800-63d22cdc87fd",
+          "name": "Create a new organization API token.",
+          "request": {
+            "name": "Create a new organization API token.",
+            "description": {},
+            "url": {
+              "path": [
+                "tokens",
+                "v1",
+                "{orgId}",
+                "create"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "id": "a9bf54ba-fd16-441f-93c7-2bd39def873f",
+          "name": "Revoke an organization API token.",
+          "request": {
+            "name": "Revoke an organization API token.",
+            "description": {},
+            "url": {
+              "path": [
+                "tokens",
+                "v1",
+                "{orgId}",
+                "revoke",
+                "{orgTokenId}"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [],
+            "method": "PUT",
+            "auth": null
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "info": {
+    "_postman_id": "e3e96389-a1bd-499a-ae69-4e9158b72b12",
+    "name": "Hathora Cloud API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Hathora Cloud is on-demand, globally distributed compute for multiplayer game servers. Use the Hathora Cloud API to manage applications, upload and run game server builds, configure deployments, launch and stop processes, create and manage rooms, discover ping endpoints, stream logs, read process metrics, and manage organization tokens and billing. Player-facing authentication issues short-lived player tokens for use with room and lobby endpoints.",
+      "type": "text/plain"
+    }
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.hathora.dev"
+    },
+    {
+      "key": "bearerToken",
+      "value": "<hathoraDevToken>"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  }
+}

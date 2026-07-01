@@ -1,0 +1,70 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Hathora
+providerId: hathora
+created: '2026-07-01'
+modified: '2026-07-01'
+reconciled: false
+tags:
+- Game Servers
+- Multiplayer
+- Compute
+- Hosting
+- Orchestration
+- Rate Limiting
+- Quotas
+- Throttling
+description: >-
+  The Hathora Cloud REST API is authenticated with an organization developer
+  token (hathoraDevToken) for management endpoints and short-lived player
+  tokens for room/lobby operations. Hathora did not publish fixed numeric
+  request-per-minute limits on the management API; the practical constraints
+  were resource quotas - concurrent running processes, rooms-per-process, and
+  requested CPU/memory - governed by the account tier (Explore free tier vs.
+  Pro vs. Enterprise). Standard HTTP 429 is returned when a client is
+  throttled.
+notes: >-
+  Per-account concurrency and quota values were not consistently published and
+  varied by tier; verify with the provider on reconciliation. Following the
+  Hathora Cloud wind-down toward GameFabric, live limits should be confirmed
+  against current GameFabric documentation.
+sources:
+- https://hathora.dev/docs
+- https://hathora.dev/docs/pricing-billing
+responseCodes:
+  throttled: 429
+limits:
+- name: Concurrent Processes
+  scope: application
+  metric: processes
+  limit: see provider documentation
+  notes: Number of simultaneously running game server processes; capped on the Explore free tier, higher on Pro/Enterprise.
+- name: Rooms Per Process
+  scope: process
+  metric: rooms
+  limit: configured per deployment
+  notes: Set via the deployment's roomsPerProcess; new rooms schedule onto processes with capacity.
+- name: Requested CPU / Memory
+  scope: deployment
+  metric: resources
+  limit: configured per deployment
+  notes: Requested vCPU and memory (MB) per process are defined in the deployment config and bounded by tier.
+- name: Management API Requests
+  scope: account
+  metric: requests
+  limit: see provider documentation
+  notes: No fixed public RPM published for the REST management endpoints; excessive requests may be throttled with 429.
+- name: Player Token Issuance
+  scope: application
+  metric: requests
+  limit: see provider documentation
+  notes: AuthV1 login endpoints issue player tokens; abuse-level request rates may be throttled.
+policies:
+- name: Tiered Quotas
+  description: Concurrency and resource ceilings raise from the Explore free tier to Pro and Enterprise agreements.
+- name: Backoff Strategy
+  description: Clients should implement exponential backoff with jitter and honor Retry-After on HTTP 429 responses.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
