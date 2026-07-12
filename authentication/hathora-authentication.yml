@@ -1,0 +1,15 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/hathora-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: hathoraDevToken
+  type: http
+  scheme: bearer
+  bearerFormat: JWT
+  description: Organization developer/API token used for management endpoints (apps, builds,
+    deployments, processes, rooms, logs, metrics, billing, tokens).
+  sources:
+  - openapi/hathora-openapi.yml
