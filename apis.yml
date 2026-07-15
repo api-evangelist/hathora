@@ -261,6 +261,8 @@ apis:
   description: Create, list, and revoke the organization API tokens (hathoraDevToken)
     used as bearer credentials for the management endpoints of the Hathora Cloud API.
 common:
+- type: AgenticAccess
+  url: agentic-access/hathora-agentic-access.yml
 - type: DomainSecurity
   url: security/hathora-domain-security.yml
 - type: Authentication
