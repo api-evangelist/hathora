@@ -1,0 +1,211 @@
+openapi: 3.0.3
+info:
+  title: Hathora Cloud AppsV2 DeploymentsV3 API
+  description: Hathora Cloud is on-demand, globally distributed compute for multiplayer game servers. Use the Hathora Cloud API to manage applications, upload and run game server builds, configure deployments, launch and stop processes, create and manage rooms, discover ping endpoints, stream logs, read process metrics, and manage organization tokens and billing. Player-facing authentication issues short-lived player tokens for use with room and lobby endpoints.
+  termsOfService: https://hathora.dev/terms-of-service
+  contact:
+    name: Hathora Support
+    url: https://hathora.dev
+    email: support@hathora.dev
+  version: '3.0'
+servers:
+- url: https://api.hathora.dev
+  description: Hathora Cloud production API
+security:
+- hathoraDevToken: []
+tags:
+- name: DeploymentsV3
+  description: Versioned runtime configuration for a build.
+paths:
+  /deployments/v3/{appId}/list:
+    get:
+      operationId: GetDeployments
+      tags:
+      - DeploymentsV3
+      summary: Returns an array of deployments for an application.
+      parameters:
+      - $ref: '#/components/parameters/AppId'
+      responses:
+        '200':
+          description: A list of deployments.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Deployment'
+  /deployments/v3/{appId}/create/{buildId}:
+    post:
+      operationId: CreateDeployment
+      tags:
+      - DeploymentsV3
+      summary: Create a new deployment. All new processes for the app will use the latest deployment configuration.
+      parameters:
+      - $ref: '#/components/parameters/AppId'
+      - $ref: '#/components/parameters/BuildId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeploymentConfig'
+      responses:
+        '201':
+          description: Deployment created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Deployment'
+  /deployments/v3/{appId}/latest:
+    get:
+      operationId: GetLatestDeployment
+      tags:
+      - DeploymentsV3
+      summary: Get the latest deployment for an application.
+      parameters:
+      - $ref: '#/components/parameters/AppId'
+      responses:
+        '200':
+          description: Latest deployment details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Deployment'
+  /deployments/v3/{appId}/info/{deploymentId}:
+    get:
+      operationId: GetDeployment
+      tags:
+      - DeploymentsV3
+      summary: Get details for a deployment.
+      parameters:
+      - $ref: '#/components/parameters/AppId'
+      - name: deploymentId
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Deployment details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Deployment'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  responses:
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+  schemas:
+    Deployment:
+      type: object
+      properties:
+        deploymentId:
+          type: integer
+        appId:
+          type: string
+        buildId:
+          type: string
+        buildTag:
+          type: string
+        idleTimeoutEnabled:
+          type: boolean
+        roomsPerProcess:
+          type: integer
+        transportType:
+          type: string
+        containerPort:
+          type: integer
+        requestedCPU:
+          type: number
+        requestedMemoryMB:
+          type: integer
+        createdAt:
+          type: string
+          format: date-time
+    ApiError:
+      type: object
+      properties:
+        message:
+          type: string
+    DeploymentConfig:
+      type: object
+      required:
+      - idleTimeoutEnabled
+      - roomsPerProcess
+      - transportType
+      - containerPort
+      - requestedCPU
+      - requestedMemoryMB
+      properties:
+        idleTimeoutEnabled:
+          type: boolean
+        roomsPerProcess:
+          type: integer
+          example: 3
+        transportType:
+          type: string
+          enum:
+          - tcp
+          - udp
+          - tls
+        containerPort:
+          type: integer
+          example: 4000
+        requestedCPU:
+          type: number
+          example: 0.5
+        requestedMemoryMB:
+          type: integer
+          example: 1024
+        env:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              value:
+                type: string
+        additionalContainerPorts:
+          type: array
+          items:
+            type: object
+            properties:
+              transportType:
+                type: string
+              port:
+                type: integer
+              name:
+                type: string
+  parameters:
+    BuildId:
+      name: buildId
+      in: path
+      required: true
+      schema:
+        type: string
+    AppId:
+      name: appId
+      in: path
+      required: true
+      description: The unique identifier for an application.
+      schema:
+        type: string
+        example: app-af469a92-5b45-4565-b3c4-b79878de67d2
+  securitySchemes:
+    hathoraDevToken:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Organization developer/API token used for management endpoints (apps, builds, deployments, processes, rooms, logs, metrics, billing, tokens).
+    playerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Short-lived player token issued by the AuthV1 login endpoints, used by game clients for room and lobby operations.

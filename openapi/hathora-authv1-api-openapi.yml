@@ -1,0 +1,132 @@
+openapi: 3.0.3
+info:
+  title: Hathora Cloud AppsV2 AuthV1 API
+  description: Hathora Cloud is on-demand, globally distributed compute for multiplayer game servers. Use the Hathora Cloud API to manage applications, upload and run game server builds, configure deployments, launch and stop processes, create and manage rooms, discover ping endpoints, stream logs, read process metrics, and manage organization tokens and billing. Player-facing authentication issues short-lived player tokens for use with room and lobby endpoints.
+  termsOfService: https://hathora.dev/terms-of-service
+  contact:
+    name: Hathora Support
+    url: https://hathora.dev
+    email: support@hathora.dev
+  version: '3.0'
+servers:
+- url: https://api.hathora.dev
+  description: Hathora Cloud production API
+security:
+- hathoraDevToken: []
+tags:
+- name: AuthV1
+  description: Player authentication - issue short-lived player tokens.
+paths:
+  /auth/v1/{appId}/login/anonymous:
+    post:
+      operationId: LoginAnonymous
+      tags:
+      - AuthV1
+      summary: Returns a unique player token for an anonymous user.
+      security: []
+      parameters:
+      - $ref: '#/components/parameters/AppId'
+      responses:
+        '200':
+          description: Player token issued.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlayerTokenObject'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /auth/v1/{appId}/login/nickname:
+    post:
+      operationId: LoginNickname
+      tags:
+      - AuthV1
+      summary: Returns a unique player token with a specified nickname.
+      security: []
+      parameters:
+      - $ref: '#/components/parameters/AppId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - nickname
+              properties:
+                nickname:
+                  type: string
+                  example: Alice
+      responses:
+        '200':
+          description: Player token issued.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlayerTokenObject'
+  /auth/v1/{appId}/login/google:
+    post:
+      operationId: LoginGoogle
+      tags:
+      - AuthV1
+      summary: Returns a unique player token using a Google-signed OIDC idToken.
+      security: []
+      parameters:
+      - $ref: '#/components/parameters/AppId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - idToken
+              properties:
+                idToken:
+                  type: string
+      responses:
+        '200':
+          description: Player token issued.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlayerTokenObject'
+components:
+  schemas:
+    PlayerTokenObject:
+      type: object
+      properties:
+        token:
+          type: string
+          description: A signed JWT player token.
+    ApiError:
+      type: object
+      properties:
+        message:
+          type: string
+  parameters:
+    AppId:
+      name: appId
+      in: path
+      required: true
+      description: The unique identifier for an application.
+      schema:
+        type: string
+        example: app-af469a92-5b45-4565-b3c4-b79878de67d2
+  responses:
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+  securitySchemes:
+    hathoraDevToken:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Organization developer/API token used for management endpoints (apps, builds, deployments, processes, rooms, logs, metrics, billing, tokens).
+    playerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Short-lived player token issued by the AuthV1 login endpoints, used by game clients for room and lobby operations.

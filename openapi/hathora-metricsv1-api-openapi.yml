@@ -1,0 +1,109 @@
+openapi: 3.0.3
+info:
+  title: Hathora Cloud AppsV2 MetricsV1 API
+  description: Hathora Cloud is on-demand, globally distributed compute for multiplayer game servers. Use the Hathora Cloud API to manage applications, upload and run game server builds, configure deployments, launch and stop processes, create and manage rooms, discover ping endpoints, stream logs, read process metrics, and manage organization tokens and billing. Player-facing authentication issues short-lived player tokens for use with room and lobby endpoints.
+  termsOfService: https://hathora.dev/terms-of-service
+  contact:
+    name: Hathora Support
+    url: https://hathora.dev
+    email: support@hathora.dev
+  version: '3.0'
+servers:
+- url: https://api.hathora.dev
+  description: Hathora Cloud production API
+security:
+- hathoraDevToken: []
+tags:
+- name: MetricsV1
+  description: Read CPU, memory, egress, and connection metrics for a process.
+paths:
+  /metrics/v1/{appId}/process/{processId}:
+    get:
+      operationId: GetMetrics
+      tags:
+      - MetricsV1
+      summary: Get metrics for a process using appId and processId.
+      parameters:
+      - $ref: '#/components/parameters/AppId'
+      - $ref: '#/components/parameters/ProcessId'
+      - name: metrics
+        in: query
+        description: The metrics to retrieve.
+        schema:
+          type: array
+          items:
+            type: string
+            enum:
+            - cpu
+            - memory
+            - rate_egress
+            - total_egress
+            - active_connections
+      responses:
+        '200':
+          description: Metrics data keyed by metric name.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MetricsResponse'
+components:
+  parameters:
+    AppId:
+      name: appId
+      in: path
+      required: true
+      description: The unique identifier for an application.
+      schema:
+        type: string
+        example: app-af469a92-5b45-4565-b3c4-b79878de67d2
+    ProcessId:
+      name: processId
+      in: path
+      required: true
+      schema:
+        type: string
+        example: cbfbb - 12345
+  schemas:
+    MetricValue:
+      type: object
+      properties:
+        timestamp:
+          type: integer
+          format: int64
+        value:
+          type: number
+          format: double
+    MetricsResponse:
+      type: object
+      properties:
+        cpu:
+          type: array
+          items:
+            $ref: '#/components/schemas/MetricValue'
+        memory:
+          type: array
+          items:
+            $ref: '#/components/schemas/MetricValue'
+        rate_egress:
+          type: array
+          items:
+            $ref: '#/components/schemas/MetricValue'
+        total_egress:
+          type: array
+          items:
+            $ref: '#/components/schemas/MetricValue'
+        active_connections:
+          type: array
+          items:
+            $ref: '#/components/schemas/MetricValue'
+  securitySchemes:
+    hathoraDevToken:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Organization developer/API token used for management endpoints (apps, builds, deployments, processes, rooms, logs, metrics, billing, tokens).
+    playerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Short-lived player token issued by the AuthV1 login endpoints, used by game clients for room and lobby operations.

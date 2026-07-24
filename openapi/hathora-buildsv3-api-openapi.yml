@@ -1,0 +1,184 @@
+openapi: 3.0.3
+info:
+  title: Hathora Cloud AppsV2 BuildsV3 API
+  description: Hathora Cloud is on-demand, globally distributed compute for multiplayer game servers. Use the Hathora Cloud API to manage applications, upload and run game server builds, configure deployments, launch and stop processes, create and manage rooms, discover ping endpoints, stream logs, read process metrics, and manage organization tokens and billing. Player-facing authentication issues short-lived player tokens for use with room and lobby endpoints.
+  termsOfService: https://hathora.dev/terms-of-service
+  contact:
+    name: Hathora Support
+    url: https://hathora.dev
+    email: support@hathora.dev
+  version: '3.0'
+servers:
+- url: https://api.hathora.dev
+  description: Hathora Cloud production API
+security:
+- hathoraDevToken: []
+tags:
+- name: BuildsV3
+  description: Upload and manage game server build artifacts.
+paths:
+  /builds/v3/{appId}/list:
+    get:
+      operationId: GetBuilds
+      tags:
+      - BuildsV3
+      summary: Returns an array of builds for an application.
+      parameters:
+      - $ref: '#/components/parameters/AppId'
+      responses:
+        '200':
+          description: A list of builds.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Build'
+  /builds/v3/{appId}/create:
+    post:
+      operationId: CreateBuild
+      tags:
+      - BuildsV3
+      summary: Creates a new build. Responds with a buildId that you must pass to RunBuild.
+      parameters:
+      - $ref: '#/components/parameters/AppId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                buildTag:
+                  type: string
+                  description: Tag to associate an external version with a build.
+                  example: 0.1.14-14c793
+      responses:
+        '201':
+          description: Build created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Build'
+  /builds/v3/{appId}/run/{buildId}:
+    post:
+      operationId: RunBuild
+      tags:
+      - BuildsV3
+      summary: Builds a game server artifact from a tarball you provide.
+      parameters:
+      - $ref: '#/components/parameters/AppId'
+      - $ref: '#/components/parameters/BuildId'
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+              - file
+              properties:
+                file:
+                  type: string
+                  format: binary
+                  description: A tarball of the game server Dockerfile and source.
+      responses:
+        '200':
+          description: A stream of build logs.
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+  /builds/v3/{appId}/info/{buildId}:
+    get:
+      operationId: GetBuild
+      tags:
+      - BuildsV3
+      summary: Get details for a build.
+      parameters:
+      - $ref: '#/components/parameters/AppId'
+      - $ref: '#/components/parameters/BuildId'
+      responses:
+        '200':
+          description: Build details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Build'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /builds/v3/{appId}/delete/{buildId}:
+    delete:
+      operationId: DeleteBuild
+      tags:
+      - BuildsV3
+      summary: Delete a build. All associated metadata is deleted.
+      parameters:
+      - $ref: '#/components/parameters/AppId'
+      - $ref: '#/components/parameters/BuildId'
+      responses:
+        '204':
+          description: Build deleted.
+components:
+  schemas:
+    Build:
+      type: object
+      properties:
+        buildId:
+          type: string
+        appId:
+          type: string
+        buildTag:
+          type: string
+        status:
+          type: string
+          enum:
+          - created
+          - running
+          - succeeded
+          - failed
+        imageSize:
+          type: integer
+          format: int64
+        createdAt:
+          type: string
+          format: date-time
+    ApiError:
+      type: object
+      properties:
+        message:
+          type: string
+  responses:
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+  parameters:
+    BuildId:
+      name: buildId
+      in: path
+      required: true
+      schema:
+        type: string
+    AppId:
+      name: appId
+      in: path
+      required: true
+      description: The unique identifier for an application.
+      schema:
+        type: string
+        example: app-af469a92-5b45-4565-b3c4-b79878de67d2
+  securitySchemes:
+    hathoraDevToken:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Organization developer/API token used for management endpoints (apps, builds, deployments, processes, rooms, logs, metrics, billing, tokens).
+    playerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Short-lived player token issued by the AuthV1 login endpoints, used by game clients for room and lobby operations.

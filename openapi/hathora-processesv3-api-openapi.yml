@@ -1,0 +1,186 @@
+openapi: 3.0.3
+info:
+  title: Hathora Cloud AppsV2 ProcessesV3 API
+  description: Hathora Cloud is on-demand, globally distributed compute for multiplayer game servers. Use the Hathora Cloud API to manage applications, upload and run game server builds, configure deployments, launch and stop processes, create and manage rooms, discover ping endpoints, stream logs, read process metrics, and manage organization tokens and billing. Player-facing authentication issues short-lived player tokens for use with room and lobby endpoints.
+  termsOfService: https://hathora.dev/terms-of-service
+  contact:
+    name: Hathora Support
+    url: https://hathora.dev
+    email: support@hathora.dev
+  version: '3.0'
+servers:
+- url: https://api.hathora.dev
+  description: Hathora Cloud production API
+security:
+- hathoraDevToken: []
+tags:
+- name: ProcessesV3
+  description: Launch, inspect, and stop running game server processes.
+paths:
+  /processes/v3/{appId}/list/latest:
+    get:
+      operationId: GetLatestProcesses
+      tags:
+      - ProcessesV3
+      summary: Retrieve the latest process objects for an application.
+      parameters:
+      - $ref: '#/components/parameters/AppId'
+      responses:
+        '200':
+          description: A list of processes.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Process'
+  /processes/v3/{appId}/create:
+    post:
+      operationId: CreateProcess
+      tags:
+      - ProcessesV3
+      summary: Start a new process in a specific region.
+      parameters:
+      - $ref: '#/components/parameters/AppId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - region
+              properties:
+                region:
+                  $ref: '#/components/schemas/Region'
+      responses:
+        '201':
+          description: Process created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Process'
+  /processes/v3/{appId}/info/{processId}:
+    get:
+      operationId: GetProcess
+      tags:
+      - ProcessesV3
+      summary: Get details for a process.
+      parameters:
+      - $ref: '#/components/parameters/AppId'
+      - $ref: '#/components/parameters/ProcessId'
+      responses:
+        '200':
+          description: Process details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Process'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /processes/v3/{appId}/stop/{processId}:
+    post:
+      operationId: StopProcess
+      tags:
+      - ProcessesV3
+      summary: Stop a running process.
+      parameters:
+      - $ref: '#/components/parameters/AppId'
+      - $ref: '#/components/parameters/ProcessId'
+      responses:
+        '204':
+          description: Process stopped.
+components:
+  responses:
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+  schemas:
+    Process:
+      type: object
+      properties:
+        processId:
+          type: string
+        appId:
+          type: string
+        deploymentId:
+          type: integer
+        region:
+          $ref: '#/components/schemas/Region'
+        host:
+          type: string
+        port:
+          type: integer
+        roomsAllocated:
+          type: integer
+        roomsPerProcess:
+          type: integer
+        status:
+          type: string
+          enum:
+          - starting
+          - active
+          - draining
+          - stopping
+          - stopped
+        startedAt:
+          type: string
+          format: date-time
+        stoppingAt:
+          type: string
+          format: date-time
+          nullable: true
+        terminatedAt:
+          type: string
+          format: date-time
+          nullable: true
+    Region:
+      type: string
+      description: The region where a process, room, or lobby runs.
+      enum:
+      - Seattle
+      - Los_Angeles
+      - Washington_DC
+      - Chicago
+      - London
+      - Frankfurt
+      - Mumbai
+      - Singapore
+      - Tokyo
+      - Sydney
+      - Sao_Paulo
+    ApiError:
+      type: object
+      properties:
+        message:
+          type: string
+  parameters:
+    ProcessId:
+      name: processId
+      in: path
+      required: true
+      schema:
+        type: string
+        example: cbfbb - 12345
+    AppId:
+      name: appId
+      in: path
+      required: true
+      description: The unique identifier for an application.
+      schema:
+        type: string
+        example: app-af469a92-5b45-4565-b3c4-b79878de67d2
+  securitySchemes:
+    hathoraDevToken:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Organization developer/API token used for management endpoints (apps, builds, deployments, processes, rooms, logs, metrics, billing, tokens).
+    playerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Short-lived player token issued by the AuthV1 login endpoints, used by game clients for room and lobby operations.

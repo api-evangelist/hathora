@@ -1,0 +1,206 @@
+openapi: 3.0.3
+info:
+  title: Hathora Cloud AppsV2 RoomsV2 API
+  description: Hathora Cloud is on-demand, globally distributed compute for multiplayer game servers. Use the Hathora Cloud API to manage applications, upload and run game server builds, configure deployments, launch and stop processes, create and manage rooms, discover ping endpoints, stream logs, read process metrics, and manage organization tokens and billing. Player-facing authentication issues short-lived player tokens for use with room and lobby endpoints.
+  termsOfService: https://hathora.dev/terms-of-service
+  contact:
+    name: Hathora Support
+    url: https://hathora.dev
+    email: support@hathora.dev
+  version: '3.0'
+servers:
+- url: https://api.hathora.dev
+  description: Hathora Cloud production API
+security:
+- hathoraDevToken: []
+tags:
+- name: RoomsV2
+  description: Create, inspect, and destroy rooms and get connection info.
+paths:
+  /rooms/v2/{appId}/create:
+    post:
+      operationId: CreateRoom
+      tags:
+      - RoomsV2
+      summary: Create a new room for an application.
+      parameters:
+      - $ref: '#/components/parameters/AppId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - region
+              properties:
+                region:
+                  $ref: '#/components/schemas/Region'
+                roomConfig:
+                  type: string
+                  description: Optional opaque config string passed to the process.
+      responses:
+        '201':
+          description: Room created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RoomCreated'
+  /rooms/v2/{appId}/info/{roomId}:
+    get:
+      operationId: GetRoomInfo
+      tags:
+      - RoomsV2
+      summary: Get details for a room.
+      parameters:
+      - $ref: '#/components/parameters/AppId'
+      - $ref: '#/components/parameters/RoomId'
+      responses:
+        '200':
+          description: Room details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Room'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /rooms/v2/{appId}/connectioninfo/{roomId}:
+    get:
+      operationId: GetConnectionInfo
+      tags:
+      - RoomsV2
+      summary: Poll this endpoint to get connection details for an active room.
+      parameters:
+      - $ref: '#/components/parameters/AppId'
+      - $ref: '#/components/parameters/RoomId'
+      responses:
+        '200':
+          description: Connection info.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConnectionInfo'
+  /rooms/v2/{appId}/destroy/{roomId}:
+    post:
+      operationId: DestroyRoom
+      tags:
+      - RoomsV2
+      summary: Destroy a room. All associated metadata is deleted.
+      parameters:
+      - $ref: '#/components/parameters/AppId'
+      - $ref: '#/components/parameters/RoomId'
+      responses:
+        '204':
+          description: Room destroyed.
+components:
+  schemas:
+    Room:
+      type: object
+      properties:
+        roomId:
+          type: string
+        appId:
+          type: string
+        currentAllocation:
+          type: object
+          properties:
+            processId:
+              type: string
+            roomAllocationId:
+              type: string
+            scheduledAt:
+              type: string
+              format: date-time
+            unscheduledAt:
+              type: string
+              format: date-time
+              nullable: true
+        status:
+          type: string
+          enum:
+          - scheduling
+          - active
+          - suspended
+          - destroyed
+    RoomCreated:
+      type: object
+      properties:
+        roomId:
+          type: string
+        processId:
+          type: string
+    Region:
+      type: string
+      description: The region where a process, room, or lobby runs.
+      enum:
+      - Seattle
+      - Los_Angeles
+      - Washington_DC
+      - Chicago
+      - London
+      - Frankfurt
+      - Mumbai
+      - Singapore
+      - Tokyo
+      - Sydney
+      - Sao_Paulo
+    ApiError:
+      type: object
+      properties:
+        message:
+          type: string
+    ConnectionInfo:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+          - starting
+          - active
+        roomId:
+          type: string
+        exposedPort:
+          type: object
+          properties:
+            transportType:
+              type: string
+            port:
+              type: integer
+            host:
+              type: string
+            name:
+              type: string
+  responses:
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
+  parameters:
+    RoomId:
+      name: roomId
+      in: path
+      required: true
+      schema:
+        type: string
+        example: 2swovpy1fnunu
+    AppId:
+      name: appId
+      in: path
+      required: true
+      description: The unique identifier for an application.
+      schema:
+        type: string
+        example: app-af469a92-5b45-4565-b3c4-b79878de67d2
+  securitySchemes:
+    hathoraDevToken:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Organization developer/API token used for management endpoints (apps, builds, deployments, processes, rooms, logs, metrics, billing, tokens).
+    playerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Short-lived player token issued by the AuthV1 login endpoints, used by game clients for room and lobby operations.

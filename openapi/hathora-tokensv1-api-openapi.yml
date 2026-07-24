@@ -1,0 +1,120 @@
+openapi: 3.0.3
+info:
+  title: Hathora Cloud AppsV2 TokensV1 API
+  description: Hathora Cloud is on-demand, globally distributed compute for multiplayer game servers. Use the Hathora Cloud API to manage applications, upload and run game server builds, configure deployments, launch and stop processes, create and manage rooms, discover ping endpoints, stream logs, read process metrics, and manage organization tokens and billing. Player-facing authentication issues short-lived player tokens for use with room and lobby endpoints.
+  termsOfService: https://hathora.dev/terms-of-service
+  contact:
+    name: Hathora Support
+    url: https://hathora.dev
+    email: support@hathora.dev
+  version: '3.0'
+servers:
+- url: https://api.hathora.dev
+  description: Hathora Cloud production API
+security:
+- hathoraDevToken: []
+tags:
+- name: TokensV1
+  description: Create, list, and revoke organization API tokens.
+paths:
+  /tokens/v1/{orgId}/list:
+    get:
+      operationId: GetOrgTokens
+      tags:
+      - TokensV1
+      summary: Returns an unsorted list of an organization's API tokens.
+      parameters:
+      - $ref: '#/components/parameters/OrgId'
+      responses:
+        '200':
+          description: A list of org tokens.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/OrgToken'
+  /tokens/v1/{orgId}/create:
+    post:
+      operationId: CreateOrgToken
+      tags:
+      - TokensV1
+      summary: Create a new organization API token.
+      parameters:
+      - $ref: '#/components/parameters/OrgId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - name
+              properties:
+                name:
+                  type: string
+                  example: ci-token
+      responses:
+        '201':
+          description: Org token created. The plainTextToken is only shown once.
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/OrgToken'
+                - type: object
+                  properties:
+                    plainTextToken:
+                      type: string
+  /tokens/v1/{orgId}/revoke/{orgTokenId}:
+    put:
+      operationId: RevokeOrgToken
+      tags:
+      - TokensV1
+      summary: Revoke an organization API token.
+      parameters:
+      - $ref: '#/components/parameters/OrgId'
+      - name: orgTokenId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Token revoked.
+components:
+  schemas:
+    OrgToken:
+      type: object
+      properties:
+        orgTokenId:
+          type: string
+        name:
+          type: string
+        status:
+          type: string
+          enum:
+          - active
+          - revoked
+        createdAt:
+          type: string
+          format: date-time
+  parameters:
+    OrgId:
+      name: orgId
+      in: path
+      required: true
+      schema:
+        type: string
+        example: org-6f706e83-0ec1-437a-9a46-7d4281eb2f39
+  securitySchemes:
+    hathoraDevToken:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Organization developer/API token used for management endpoints (apps, builds, deployments, processes, rooms, logs, metrics, billing, tokens).
+    playerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: Short-lived player token issued by the AuthV1 login endpoints, used by game clients for room and lobby operations.
