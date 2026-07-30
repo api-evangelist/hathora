@@ -8,7 +8,20 @@ description: Hathora provides on-demand, globally distributed dedicated compute 
   builds, deployments, processes, rooms, discovery/ping, logs, metrics, billing, and
   organization tokens, plus a player-authentication surface that issues short-lived
   player tokens.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/hathora.png
 tags:
 - Game Servers
 - Multiplayer
@@ -19,247 +32,424 @@ created: '2026-07-01'
 modified: '2026-07-01'
 specificationVersion: '0.19'
 apis:
-- aid: hathora:hathora-auth-api
-  name: Hathora Auth API
-  tags:
-  - Authentication
-  - Player Tokens
-  - JWT
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+- aid: hathora:hathora-appsv2-api
+  name: Hathora AppsV2 API
+  description: Create and manage your organization's applications.
   humanURL: https://hathora.dev/docs/api-reference/auth-v1
   baseURL: https://api.hathora.dev
-  properties:
-  - url: https://hathora.dev/docs
-    type: Documentation
-  - url: https://hathora.dev/api#tag/AuthV1
-    type: APIReference
-  - url: openapi/hathora-openapi.yml
-    type: OpenAPI
-  - url: collections/hathora.postman_collection.json
-    type: PostmanCollection
-  - url: collections/hathora.opencollection.json
-    type: OpenCollection
-  description: Issues short-lived player tokens for game clients via anonymous, nickname,
-    and Google OIDC login flows, used to authorize room and lobby operations.
-- aid: hathora:hathora-apps-api
-  name: Hathora Apps API
   tags:
-  - Applications
-  - Management
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://hathora.dev/docs/api-reference/apps-v2
-  baseURL: https://api.hathora.dev
+  - AppsV2
   properties:
-  - url: https://hathora.dev/docs
-    type: Documentation
-  - url: https://hathora.dev/api#tag/AppsV2
-    type: APIReference
-  - url: openapi/hathora-openapi.yml
-    type: OpenAPI
-  - url: collections/hathora.postman_collection.json
-    type: PostmanCollection
-  - url: collections/hathora.opencollection.json
-    type: OpenCollection
-  description: Create, list, read, update, and delete the applications that group your
-    game server builds, deployments, and processes under an organization.
-- aid: hathora:hathora-builds-api
-  name: Hathora Builds API
+  - type: OpenAPI
+    url: openapi/hathora-appsv2-api-openapi.yml
+  - type: Documentation
+    url: https://hathora.dev/docs
+  - type: APIReference
+    url: https://hathora.dev/api#tag/AuthV1
+  - type: PostmanCollection
+    url: collections/hathora.postman_collection.json
+  - type: OpenCollection
+    url: collections/hathora.opencollection.json
+  - type: APIReference
+    url: https://hathora.dev/api#tag/AppsV2
+  - type: APIReference
+    url: https://hathora.dev/api#tag/BuildsV3
+  - type: APIReference
+    url: https://hathora.dev/api#tag/DeploymentsV3
+  - type: APIReference
+    url: https://hathora.dev/api#tag/ProcessesV3
+  - type: APIReference
+    url: https://hathora.dev/api#tag/RoomsV2
+  - type: APIReference
+    url: https://hathora.dev/api#tag/DiscoveryV2
+  - type: APIReference
+    url: https://hathora.dev/api#tag/LogsV1
+  - type: APIReference
+    url: https://hathora.dev/api#tag/MetricsV1
+  - type: APIReference
+    url: https://hathora.dev/api#tag/BillingV1
+  - type: APIReference
+    url: https://hathora.dev/api#tag/TokensV1
+- aid: hathora:hathora-authv1-api
+  name: Hathora AuthV1 API
+  description: Player authentication - issue short-lived player tokens.
+  humanURL: https://hathora.dev/docs/api-reference/auth-v1
+  baseURL: https://api.hathora.dev
   tags:
-  - Builds
-  - Container Images
-  - Deploy
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://hathora.dev/docs/api-reference/builds-v3
-  baseURL: https://api.hathora.dev
+  - AuthV1
   properties:
-  - url: https://hathora.dev/docs
-    type: Documentation
-  - url: https://hathora.dev/api#tag/BuildsV3
-    type: APIReference
-  - url: openapi/hathora-openapi.yml
-    type: OpenAPI
-  - url: collections/hathora.postman_collection.json
-    type: PostmanCollection
-  - url: collections/hathora.opencollection.json
-    type: OpenCollection
-  description: Create a build, upload a game server tarball, run the build into a container
-    image, and list, inspect, or delete builds for an application.
-- aid: hathora:hathora-deployments-api
-  name: Hathora Deployments API
+  - type: OpenAPI
+    url: openapi/hathora-authv1-api-openapi.yml
+  - type: Documentation
+    url: https://hathora.dev/docs
+  - type: APIReference
+    url: https://hathora.dev/api#tag/AuthV1
+  - type: PostmanCollection
+    url: collections/hathora.postman_collection.json
+  - type: OpenCollection
+    url: collections/hathora.opencollection.json
+  - type: APIReference
+    url: https://hathora.dev/api#tag/AppsV2
+  - type: APIReference
+    url: https://hathora.dev/api#tag/BuildsV3
+  - type: APIReference
+    url: https://hathora.dev/api#tag/DeploymentsV3
+  - type: APIReference
+    url: https://hathora.dev/api#tag/ProcessesV3
+  - type: APIReference
+    url: https://hathora.dev/api#tag/RoomsV2
+  - type: APIReference
+    url: https://hathora.dev/api#tag/DiscoveryV2
+  - type: APIReference
+    url: https://hathora.dev/api#tag/LogsV1
+  - type: APIReference
+    url: https://hathora.dev/api#tag/MetricsV1
+  - type: APIReference
+    url: https://hathora.dev/api#tag/BillingV1
+  - type: APIReference
+    url: https://hathora.dev/api#tag/TokensV1
+- aid: hathora:hathora-billingv1-api
+  name: Hathora BillingV1 API
+  description: Account balance, invoices, payment method, and Stripe portal.
+  humanURL: https://hathora.dev/docs/api-reference/auth-v1
+  baseURL: https://api.hathora.dev
   tags:
-  - Deployments
-  - Runtime Configuration
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://hathora.dev/docs/api-reference/deployments-v3
-  baseURL: https://api.hathora.dev
+  - BillingV1
   properties:
-  - url: https://hathora.dev/docs
-    type: Documentation
-  - url: https://hathora.dev/api#tag/DeploymentsV3
-    type: APIReference
-  - url: openapi/hathora-openapi.yml
-    type: OpenAPI
-  - url: collections/hathora.postman_collection.json
-    type: PostmanCollection
-  - url: collections/hathora.opencollection.json
-    type: OpenCollection
-  description: Create and read deployments - the versioned runtime configuration (CPU,
-    memory, transport, ports, env, rooms-per-process, idle timeout) that binds a build
-    to how new processes run.
-- aid: hathora:hathora-processes-api
-  name: Hathora Processes API
+  - type: OpenAPI
+    url: openapi/hathora-billingv1-api-openapi.yml
+  - type: Documentation
+    url: https://hathora.dev/docs
+  - type: APIReference
+    url: https://hathora.dev/api#tag/AuthV1
+  - type: PostmanCollection
+    url: collections/hathora.postman_collection.json
+  - type: OpenCollection
+    url: collections/hathora.opencollection.json
+  - type: APIReference
+    url: https://hathora.dev/api#tag/AppsV2
+  - type: APIReference
+    url: https://hathora.dev/api#tag/BuildsV3
+  - type: APIReference
+    url: https://hathora.dev/api#tag/DeploymentsV3
+  - type: APIReference
+    url: https://hathora.dev/api#tag/ProcessesV3
+  - type: APIReference
+    url: https://hathora.dev/api#tag/RoomsV2
+  - type: APIReference
+    url: https://hathora.dev/api#tag/DiscoveryV2
+  - type: APIReference
+    url: https://hathora.dev/api#tag/LogsV1
+  - type: APIReference
+    url: https://hathora.dev/api#tag/MetricsV1
+  - type: APIReference
+    url: https://hathora.dev/api#tag/BillingV1
+  - type: APIReference
+    url: https://hathora.dev/api#tag/TokensV1
+- aid: hathora:hathora-buildsv3-api
+  name: Hathora BuildsV3 API
+  description: Upload and manage game server build artifacts.
+  humanURL: https://hathora.dev/docs/api-reference/auth-v1
+  baseURL: https://api.hathora.dev
   tags:
-  - Processes
-  - Compute
-  - Lifecycle
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://hathora.dev/docs/api-reference/processes-v3
-  baseURL: https://api.hathora.dev
+  - BuildsV3
   properties:
-  - url: https://hathora.dev/docs
-    type: Documentation
-  - url: https://hathora.dev/api#tag/ProcessesV3
-    type: APIReference
-  - url: openapi/hathora-openapi.yml
-    type: OpenAPI
-  - url: collections/hathora.postman_collection.json
-    type: PostmanCollection
-  - url: collections/hathora.opencollection.json
-    type: OpenCollection
-  description: Start game server processes in a chosen region, list latest processes,
-    read process details (host, port, allocation, status), and stop a running process.
-- aid: hathora:hathora-rooms-api
-  name: Hathora Rooms API
+  - type: OpenAPI
+    url: openapi/hathora-buildsv3-api-openapi.yml
+  - type: Documentation
+    url: https://hathora.dev/docs
+  - type: APIReference
+    url: https://hathora.dev/api#tag/AuthV1
+  - type: PostmanCollection
+    url: collections/hathora.postman_collection.json
+  - type: OpenCollection
+    url: collections/hathora.opencollection.json
+  - type: APIReference
+    url: https://hathora.dev/api#tag/AppsV2
+  - type: APIReference
+    url: https://hathora.dev/api#tag/BuildsV3
+  - type: APIReference
+    url: https://hathora.dev/api#tag/DeploymentsV3
+  - type: APIReference
+    url: https://hathora.dev/api#tag/ProcessesV3
+  - type: APIReference
+    url: https://hathora.dev/api#tag/RoomsV2
+  - type: APIReference
+    url: https://hathora.dev/api#tag/DiscoveryV2
+  - type: APIReference
+    url: https://hathora.dev/api#tag/LogsV1
+  - type: APIReference
+    url: https://hathora.dev/api#tag/MetricsV1
+  - type: APIReference
+    url: https://hathora.dev/api#tag/BillingV1
+  - type: APIReference
+    url: https://hathora.dev/api#tag/TokensV1
+- aid: hathora:hathora-deploymentsv3-api
+  name: Hathora DeploymentsV3 API
+  description: Versioned runtime configuration for a build.
+  humanURL: https://hathora.dev/docs/api-reference/auth-v1
+  baseURL: https://api.hathora.dev
   tags:
-  - Rooms
-  - Matchmaking
-  - Connection Info
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://hathora.dev/docs/api-reference/rooms-v2
-  baseURL: https://api.hathora.dev
+  - DeploymentsV3
   properties:
-  - url: https://hathora.dev/docs
-    type: Documentation
-  - url: https://hathora.dev/api#tag/RoomsV2
-    type: APIReference
-  - url: openapi/hathora-openapi.yml
-    type: OpenAPI
-  - url: collections/hathora.postman_collection.json
-    type: PostmanCollection
-  - url: collections/hathora.opencollection.json
-    type: OpenCollection
-  description: Create rooms on running processes, poll for connection info (host/port),
-    read room status, and destroy rooms - the unit game clients connect to for a match.
-- aid: hathora:hathora-discovery-api
-  name: Hathora Discovery API
+  - type: OpenAPI
+    url: openapi/hathora-deploymentsv3-api-openapi.yml
+  - type: Documentation
+    url: https://hathora.dev/docs
+  - type: APIReference
+    url: https://hathora.dev/api#tag/AuthV1
+  - type: PostmanCollection
+    url: collections/hathora.postman_collection.json
+  - type: OpenCollection
+    url: collections/hathora.opencollection.json
+  - type: APIReference
+    url: https://hathora.dev/api#tag/AppsV2
+  - type: APIReference
+    url: https://hathora.dev/api#tag/BuildsV3
+  - type: APIReference
+    url: https://hathora.dev/api#tag/DeploymentsV3
+  - type: APIReference
+    url: https://hathora.dev/api#tag/ProcessesV3
+  - type: APIReference
+    url: https://hathora.dev/api#tag/RoomsV2
+  - type: APIReference
+    url: https://hathora.dev/api#tag/DiscoveryV2
+  - type: APIReference
+    url: https://hathora.dev/api#tag/LogsV1
+  - type: APIReference
+    url: https://hathora.dev/api#tag/MetricsV1
+  - type: APIReference
+    url: https://hathora.dev/api#tag/BillingV1
+  - type: APIReference
+    url: https://hathora.dev/api#tag/TokensV1
+- aid: hathora:hathora-discoveryv2-api
+  name: Hathora DiscoveryV2 API
+  description: Region ping endpoints for latency-based routing.
+  humanURL: https://hathora.dev/docs/api-reference/auth-v1
+  baseURL: https://api.hathora.dev
   tags:
-  - Discovery
-  - Ping
-  - Latency
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://hathora.dev/docs/api-reference/discovery-v2
-  baseURL: https://api.hathora.dev
+  - DiscoveryV2
   properties:
-  - url: https://hathora.dev/docs
-    type: Documentation
-  - url: https://hathora.dev/api#tag/DiscoveryV2
-    type: APIReference
-  - url: openapi/hathora-openapi.yml
-    type: OpenAPI
-  - url: collections/hathora.postman_collection.json
-    type: PostmanCollection
-  - url: collections/hathora.opencollection.json
-    type: OpenCollection
-  description: Returns every region with a host and port that a game client can directly
-    ping, enabling latency-based routing to the nearest region.
-- aid: hathora:hathora-logs-api
-  name: Hathora Logs API
+  - type: OpenAPI
+    url: openapi/hathora-discoveryv2-api-openapi.yml
+  - type: Documentation
+    url: https://hathora.dev/docs
+  - type: APIReference
+    url: https://hathora.dev/api#tag/AuthV1
+  - type: PostmanCollection
+    url: collections/hathora.postman_collection.json
+  - type: OpenCollection
+    url: collections/hathora.opencollection.json
+  - type: APIReference
+    url: https://hathora.dev/api#tag/AppsV2
+  - type: APIReference
+    url: https://hathora.dev/api#tag/BuildsV3
+  - type: APIReference
+    url: https://hathora.dev/api#tag/DeploymentsV3
+  - type: APIReference
+    url: https://hathora.dev/api#tag/ProcessesV3
+  - type: APIReference
+    url: https://hathora.dev/api#tag/RoomsV2
+  - type: APIReference
+    url: https://hathora.dev/api#tag/DiscoveryV2
+  - type: APIReference
+    url: https://hathora.dev/api#tag/LogsV1
+  - type: APIReference
+    url: https://hathora.dev/api#tag/MetricsV1
+  - type: APIReference
+    url: https://hathora.dev/api#tag/BillingV1
+  - type: APIReference
+    url: https://hathora.dev/api#tag/TokensV1
+- aid: hathora:hathora-logsv1-api
+  name: Hathora LogsV1 API
+  description: Stream and download logs for processes.
+  humanURL: https://hathora.dev/docs/api-reference/auth-v1
+  baseURL: https://api.hathora.dev
   tags:
-  - Logs
-  - Observability
-  - Streaming
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://hathora.dev/docs/api-reference/logs-v1
-  baseURL: https://api.hathora.dev
+  - LogsV1
   properties:
-  - url: https://hathora.dev/docs
-    type: Documentation
-  - url: https://hathora.dev/api#tag/LogsV1
-    type: APIReference
-  - url: openapi/hathora-openapi.yml
-    type: OpenAPI
-  - url: collections/hathora.postman_collection.json
-    type: PostmanCollection
-  - url: collections/hathora.opencollection.json
-    type: OpenCollection
-  description: Stream live logs for a running process and download the full log file
-    for a stopped process, keyed by appId and processId.
-- aid: hathora:hathora-metrics-api
-  name: Hathora Metrics API
+  - type: OpenAPI
+    url: openapi/hathora-logsv1-api-openapi.yml
+  - type: Documentation
+    url: https://hathora.dev/docs
+  - type: APIReference
+    url: https://hathora.dev/api#tag/AuthV1
+  - type: PostmanCollection
+    url: collections/hathora.postman_collection.json
+  - type: OpenCollection
+    url: collections/hathora.opencollection.json
+  - type: APIReference
+    url: https://hathora.dev/api#tag/AppsV2
+  - type: APIReference
+    url: https://hathora.dev/api#tag/BuildsV3
+  - type: APIReference
+    url: https://hathora.dev/api#tag/DeploymentsV3
+  - type: APIReference
+    url: https://hathora.dev/api#tag/ProcessesV3
+  - type: APIReference
+    url: https://hathora.dev/api#tag/RoomsV2
+  - type: APIReference
+    url: https://hathora.dev/api#tag/DiscoveryV2
+  - type: APIReference
+    url: https://hathora.dev/api#tag/LogsV1
+  - type: APIReference
+    url: https://hathora.dev/api#tag/MetricsV1
+  - type: APIReference
+    url: https://hathora.dev/api#tag/BillingV1
+  - type: APIReference
+    url: https://hathora.dev/api#tag/TokensV1
+- aid: hathora:hathora-metricsv1-api
+  name: Hathora MetricsV1 API
+  description: Read CPU, memory, egress, and connection metrics for a process.
+  humanURL: https://hathora.dev/docs/api-reference/auth-v1
+  baseURL: https://api.hathora.dev
   tags:
-  - Metrics
-  - Monitoring
-  - Telemetry
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://hathora.dev/docs/api-reference/metrics-v1
-  baseURL: https://api.hathora.dev
+  - MetricsV1
   properties:
-  - url: https://hathora.dev/docs
-    type: Documentation
-  - url: https://hathora.dev/api#tag/MetricsV1
-    type: APIReference
-  - url: openapi/hathora-openapi.yml
-    type: OpenAPI
-  - url: collections/hathora.postman_collection.json
-    type: PostmanCollection
-  - url: collections/hathora.opencollection.json
-    type: OpenCollection
-  description: Read time-series metrics for a process - CPU, memory, egress rate, total
-    egress, and active connections - to monitor game server health and capacity.
-- aid: hathora:hathora-billing-api
-  name: Hathora Billing API
+  - type: OpenAPI
+    url: openapi/hathora-metricsv1-api-openapi.yml
+  - type: Documentation
+    url: https://hathora.dev/docs
+  - type: APIReference
+    url: https://hathora.dev/api#tag/AuthV1
+  - type: PostmanCollection
+    url: collections/hathora.postman_collection.json
+  - type: OpenCollection
+    url: collections/hathora.opencollection.json
+  - type: APIReference
+    url: https://hathora.dev/api#tag/AppsV2
+  - type: APIReference
+    url: https://hathora.dev/api#tag/BuildsV3
+  - type: APIReference
+    url: https://hathora.dev/api#tag/DeploymentsV3
+  - type: APIReference
+    url: https://hathora.dev/api#tag/ProcessesV3
+  - type: APIReference
+    url: https://hathora.dev/api#tag/RoomsV2
+  - type: APIReference
+    url: https://hathora.dev/api#tag/DiscoveryV2
+  - type: APIReference
+    url: https://hathora.dev/api#tag/LogsV1
+  - type: APIReference
+    url: https://hathora.dev/api#tag/MetricsV1
+  - type: APIReference
+    url: https://hathora.dev/api#tag/BillingV1
+  - type: APIReference
+    url: https://hathora.dev/api#tag/TokensV1
+- aid: hathora:hathora-processesv3-api
+  name: Hathora ProcessesV3 API
+  description: Launch, inspect, and stop running game server processes.
+  humanURL: https://hathora.dev/docs/api-reference/auth-v1
+  baseURL: https://api.hathora.dev
   tags:
-  - Billing
-  - Invoices
-  - Payments
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://hathora.dev/docs/api-reference/billing-v1
-  baseURL: https://api.hathora.dev
+  - ProcessesV3
   properties:
-  - url: https://hathora.dev/docs
-    type: Documentation
-  - url: https://hathora.dev/api#tag/BillingV1
-    type: APIReference
-  - url: openapi/hathora-openapi.yml
-    type: OpenAPI
-  - url: collections/hathora.postman_collection.json
-    type: PostmanCollection
-  - url: collections/hathora.opencollection.json
-    type: OpenCollection
-  description: Read account balance and invoice history, view the stored payment method,
-    and initialize a Stripe customer portal URL for self-service billing management.
-- aid: hathora:hathora-tokens-api
-  name: Hathora Tokens API
+  - type: OpenAPI
+    url: openapi/hathora-processesv3-api-openapi.yml
+  - type: Documentation
+    url: https://hathora.dev/docs
+  - type: APIReference
+    url: https://hathora.dev/api#tag/AuthV1
+  - type: PostmanCollection
+    url: collections/hathora.postman_collection.json
+  - type: OpenCollection
+    url: collections/hathora.opencollection.json
+  - type: APIReference
+    url: https://hathora.dev/api#tag/AppsV2
+  - type: APIReference
+    url: https://hathora.dev/api#tag/BuildsV3
+  - type: APIReference
+    url: https://hathora.dev/api#tag/DeploymentsV3
+  - type: APIReference
+    url: https://hathora.dev/api#tag/ProcessesV3
+  - type: APIReference
+    url: https://hathora.dev/api#tag/RoomsV2
+  - type: APIReference
+    url: https://hathora.dev/api#tag/DiscoveryV2
+  - type: APIReference
+    url: https://hathora.dev/api#tag/LogsV1
+  - type: APIReference
+    url: https://hathora.dev/api#tag/MetricsV1
+  - type: APIReference
+    url: https://hathora.dev/api#tag/BillingV1
+  - type: APIReference
+    url: https://hathora.dev/api#tag/TokensV1
+- aid: hathora:hathora-roomsv2-api
+  name: Hathora RoomsV2 API
+  description: Create, inspect, and destroy rooms and get connection info.
+  humanURL: https://hathora.dev/docs/api-reference/auth-v1
+  baseURL: https://api.hathora.dev
   tags:
-  - Tokens
-  - Organization
-  - API Keys
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://hathora.dev/docs/api-reference/tokens-v1
-  baseURL: https://api.hathora.dev
+  - RoomsV2
   properties:
-  - url: https://hathora.dev/docs
-    type: Documentation
-  - url: https://hathora.dev/api#tag/TokensV1
-    type: APIReference
-  - url: openapi/hathora-openapi.yml
-    type: OpenAPI
-  - url: collections/hathora.postman_collection.json
-    type: PostmanCollection
-  - url: collections/hathora.opencollection.json
-    type: OpenCollection
-  description: Create, list, and revoke the organization API tokens (hathoraDevToken)
-    used as bearer credentials for the management endpoints of the Hathora Cloud API.
+  - type: OpenAPI
+    url: openapi/hathora-roomsv2-api-openapi.yml
+  - type: Documentation
+    url: https://hathora.dev/docs
+  - type: APIReference
+    url: https://hathora.dev/api#tag/AuthV1
+  - type: PostmanCollection
+    url: collections/hathora.postman_collection.json
+  - type: OpenCollection
+    url: collections/hathora.opencollection.json
+  - type: APIReference
+    url: https://hathora.dev/api#tag/AppsV2
+  - type: APIReference
+    url: https://hathora.dev/api#tag/BuildsV3
+  - type: APIReference
+    url: https://hathora.dev/api#tag/DeploymentsV3
+  - type: APIReference
+    url: https://hathora.dev/api#tag/ProcessesV3
+  - type: APIReference
+    url: https://hathora.dev/api#tag/RoomsV2
+  - type: APIReference
+    url: https://hathora.dev/api#tag/DiscoveryV2
+  - type: APIReference
+    url: https://hathora.dev/api#tag/LogsV1
+  - type: APIReference
+    url: https://hathora.dev/api#tag/MetricsV1
+  - type: APIReference
+    url: https://hathora.dev/api#tag/BillingV1
+  - type: APIReference
+    url: https://hathora.dev/api#tag/TokensV1
+- aid: hathora:hathora-tokensv1-api
+  name: Hathora TokensV1 API
+  description: Create, list, and revoke organization API tokens.
+  humanURL: https://hathora.dev/docs/api-reference/auth-v1
+  baseURL: https://api.hathora.dev
+  tags:
+  - TokensV1
+  properties:
+  - type: OpenAPI
+    url: openapi/hathora-tokensv1-api-openapi.yml
+  - type: Documentation
+    url: https://hathora.dev/docs
+  - type: APIReference
+    url: https://hathora.dev/api#tag/AuthV1
+  - type: PostmanCollection
+    url: collections/hathora.postman_collection.json
+  - type: OpenCollection
+    url: collections/hathora.opencollection.json
+  - type: APIReference
+    url: https://hathora.dev/api#tag/AppsV2
+  - type: APIReference
+    url: https://hathora.dev/api#tag/BuildsV3
+  - type: APIReference
+    url: https://hathora.dev/api#tag/DeploymentsV3
+  - type: APIReference
+    url: https://hathora.dev/api#tag/ProcessesV3
+  - type: APIReference
+    url: https://hathora.dev/api#tag/RoomsV2
+  - type: APIReference
+    url: https://hathora.dev/api#tag/DiscoveryV2
+  - type: APIReference
+    url: https://hathora.dev/api#tag/LogsV1
+  - type: APIReference
+    url: https://hathora.dev/api#tag/MetricsV1
+  - type: APIReference
+    url: https://hathora.dev/api#tag/BillingV1
+  - type: APIReference
+    url: https://hathora.dev/api#tag/TokensV1
 common:
 - type: AgenticAccess
   url: agentic-access/hathora-agentic-access.yml
