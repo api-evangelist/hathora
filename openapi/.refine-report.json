@@ -1,0 +1,34 @@
+{
+  "provider": "hathora",
+  "sources": [
+    "hathora-appsv2-api-openapi.yml",
+    "hathora-authv1-api-openapi.yml",
+    "hathora-billingv1-api-openapi.yml",
+    "hathora-buildsv3-api-openapi.yml",
+    "hathora-deploymentsv3-api-openapi.yml",
+    "hathora-discoveryv2-api-openapi.yml",
+    "hathora-logsv1-api-openapi.yml",
+    "hathora-metricsv1-api-openapi.yml",
+    "hathora-processesv3-api-openapi.yml",
+    "hathora-roomsv2-api-openapi.yml",
+    "hathora-tokensv1-api-openapi.yml"
+  ],
+  "outputs": [
+    "hathora-appsv2-api-openapi.yml",
+    "hathora-authv1-api-openapi.yml",
+    "hathora-billingv1-api-openapi.yml",
+    "hathora-buildsv3-api-openapi.yml",
+    "hathora-deploymentsv3-api-openapi.yml",
+    "hathora-discoveryv2-api-openapi.yml",
+    "hathora-logsv1-api-openapi.yml",
+    "hathora-metricsv1-api-openapi.yml",
+    "hathora-processesv3-api-openapi.yml",
+    "hathora-roomsv2-api-openapi.yml",
+    "hathora-tokensv1-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
