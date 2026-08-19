@@ -1,0 +1,536 @@
+{
+  "item": [
+    {
+      "id": "fd44680b-29ab-432d-8e37-e5c3a4e8d4c0",
+      "name": "ProcessesV3",
+      "description": {
+        "content": "Launch, inspect, and stop running game server processes.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "558cc30f-bc64-452b-8558-d7c7310fb8b6",
+          "name": "Retrieve the latest process objects for an application.",
+          "request": {
+            "name": "Retrieve the latest process objects for an application.",
+            "description": {},
+            "url": {
+              "path": [
+                "processes",
+                "v3",
+                ":appId",
+                "list",
+                "latest"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "appId",
+                  "description": "(Required) The unique identifier for an application."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c2a16eeb-0453-4742-8ad7-be09f389ee08",
+              "name": "A list of processes.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "processes",
+                    "v3",
+                    ":appId",
+                    "list",
+                    "latest"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "appId",
+                      "description": "(Required) The unique identifier for an application."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"processId\": \"string\",\n    \"appId\": \"string\",\n    \"deploymentId\": 2847,\n    \"region\": \"Singapore\",\n    \"host\": \"string\",\n    \"port\": 2578,\n    \"roomsAllocated\": 9218,\n    \"roomsPerProcess\": 6768,\n    \"status\": \"active\",\n    \"startedAt\": \"1999-11-27T06:57:25.375Z\",\n    \"stoppingAt\": \"1987-03-11T13:13:16.260Z\",\n    \"terminatedAt\": \"1986-03-05T11:18:18.408Z\"\n  },\n  {\n    \"processId\": \"string\",\n    \"appId\": \"string\",\n    \"deploymentId\": 7829,\n    \"region\": \"Chicago\",\n    \"host\": \"string\",\n    \"port\": 8604,\n    \"roomsAllocated\": 7288,\n    \"roomsPerProcess\": 551,\n    \"status\": \"draining\",\n    \"startedAt\": \"2005-09-19T23:14:43.177Z\",\n    \"stoppingAt\": \"2005-03-20T05:33:45.752Z\",\n    \"terminatedAt\": \"2006-01-21T08:21:19.868Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1c104a96-9023-40ff-ac31-a55c1229ec72",
+          "name": "Start a new process in a specific region.",
+          "request": {
+            "name": "Start a new process in a specific region.",
+            "description": {},
+            "url": {
+              "path": [
+                "processes",
+                "v3",
+                ":appId",
+                "create"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "appId",
+                  "description": "(Required) The unique identifier for an application."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"region\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e72980c2-79ae-4e6d-8ab1-33db9a14dece",
+              "name": "Process created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "processes",
+                    "v3",
+                    ":appId",
+                    "create"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "appId",
+                      "description": "(Required) The unique identifier for an application."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"region\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"processId\": \"string\",\n  \"appId\": \"string\",\n  \"deploymentId\": 6294,\n  \"region\": \"<string>\",\n  \"host\": \"string\",\n  \"port\": 8407,\n  \"roomsAllocated\": 3776,\n  \"roomsPerProcess\": 3228,\n  \"status\": \"draining\",\n  \"startedAt\": \"1954-04-23T18:58:41.835Z\",\n  \"stoppingAt\": \"1973-04-17T06:05:30.398Z\",\n  \"terminatedAt\": \"1994-05-03T13:28:49.842Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6fc3d41e-dea0-45b6-b512-8d915b7609ff",
+          "name": "Get details for a process.",
+          "request": {
+            "name": "Get details for a process.",
+            "description": {},
+            "url": {
+              "path": [
+                "processes",
+                "v3",
+                ":appId",
+                "info",
+                ":processId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "appId",
+                  "description": "(Required) The unique identifier for an application."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "processId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "43bb2f13-a531-492b-ab90-5c9cf0043d1a",
+              "name": "Process details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "processes",
+                    "v3",
+                    ":appId",
+                    "info",
+                    ":processId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "appId",
+                      "description": "(Required) The unique identifier for an application."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "processId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"processId\": \"string\",\n  \"appId\": \"string\",\n  \"deploymentId\": 6294,\n  \"region\": \"<string>\",\n  \"host\": \"string\",\n  \"port\": 8407,\n  \"roomsAllocated\": 3776,\n  \"roomsPerProcess\": 3228,\n  \"status\": \"draining\",\n  \"startedAt\": \"1954-04-23T18:58:41.835Z\",\n  \"stoppingAt\": \"1973-04-17T06:05:30.398Z\",\n  \"terminatedAt\": \"1994-05-03T13:28:49.842Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "08aa3ced-2a15-49a5-9bc3-cbf6077642fe",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "processes",
+                    "v3",
+                    ":appId",
+                    "info",
+                    ":processId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "appId",
+                      "description": "(Required) The unique identifier for an application."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "processId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "920561d4-99f0-48e8-9cdb-3addd1d6961c",
+          "name": "Stop a running process.",
+          "request": {
+            "name": "Stop a running process.",
+            "description": {},
+            "url": {
+              "path": [
+                "processes",
+                "v3",
+                ":appId",
+                "stop",
+                ":processId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "appId",
+                  "description": "(Required) The unique identifier for an application."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "processId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "50f91fce-dd6a-4573-b70b-1cbe4e98994b",
+              "name": "Process stopped.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "processes",
+                    "v3",
+                    ":appId",
+                    "stop",
+                    ":processId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "appId",
+                      "description": "(Required) The unique identifier for an application."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "processId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.hathora.dev",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "dd72fddd-890e-4e0b-83f6-eec0d5019aa6",
+    "name": "Hathora Cloud AppsV2 ProcessesV3 API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Hathora Cloud is on-demand, globally distributed compute for multiplayer game servers. Use the Hathora Cloud API to manage applications, upload and run game server builds, configure deployments, launch and stop processes, create and manage rooms, discover ping endpoints, stream logs, read process metrics, and manage organization tokens and billing. Player-facing authentication issues short-lived player tokens for use with room and lobby endpoints.\n\nContact Support:\n Name: Hathora Support\n Email: support@hathora.dev",
+      "type": "text/plain"
+    }
+  }
+}

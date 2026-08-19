@@ -1,0 +1,119 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Hathora Cloud AppsV2 RoomsV2 API",
+    "version": "3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "RoomsV2",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a new room for an application.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.hathora.dev/rooms/v2/:appId/create",
+            "params": [
+              {
+                "name": "appId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for an application."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new room for an application."
+        },
+        {
+          "info": {
+            "name": "Get details for a room.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.hathora.dev/rooms/v2/:appId/info/:roomId",
+            "params": [
+              {
+                "name": "appId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for an application."
+              },
+              {
+                "name": "roomId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get details for a room."
+        },
+        {
+          "info": {
+            "name": "Poll this endpoint to get connection details for an active room.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.hathora.dev/rooms/v2/:appId/connectioninfo/:roomId",
+            "params": [
+              {
+                "name": "appId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for an application."
+              },
+              {
+                "name": "roomId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Poll this endpoint to get connection details for an active room."
+        },
+        {
+          "info": {
+            "name": "Destroy a room. All associated metadata is deleted.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.hathora.dev/rooms/v2/:appId/destroy/:roomId",
+            "params": [
+              {
+                "name": "appId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for an application."
+              },
+              {
+                "name": "roomId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Destroy a room. All associated metadata is deleted."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

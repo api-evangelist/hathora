@@ -1,0 +1,114 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Hathora Cloud AppsV2 DeploymentsV3 API",
+    "version": "3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "DeploymentsV3",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Returns an array of deployments for an application.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.hathora.dev/deployments/v3/:appId/list",
+            "params": [
+              {
+                "name": "appId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for an application."
+              }
+            ]
+          },
+          "docs": "Returns an array of deployments for an application."
+        },
+        {
+          "info": {
+            "name": "Create a new deployment. All new processes for the app will use the latest deployment configuration.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.hathora.dev/deployments/v3/:appId/create/:buildId",
+            "params": [
+              {
+                "name": "appId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for an application."
+              },
+              {
+                "name": "buildId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new deployment. All new processes for the app will use the latest deployment configuration."
+        },
+        {
+          "info": {
+            "name": "Get the latest deployment for an application.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.hathora.dev/deployments/v3/:appId/latest",
+            "params": [
+              {
+                "name": "appId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for an application."
+              }
+            ]
+          },
+          "docs": "Get the latest deployment for an application."
+        },
+        {
+          "info": {
+            "name": "Get details for a deployment.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.hathora.dev/deployments/v3/:appId/info/:deploymentId",
+            "params": [
+              {
+                "name": "appId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for an application."
+              },
+              {
+                "name": "deploymentId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get details for a deployment."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

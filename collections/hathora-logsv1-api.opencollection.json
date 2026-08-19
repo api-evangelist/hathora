@@ -1,0 +1,72 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Hathora Cloud AppsV2 LogsV1 API",
+    "version": "3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "LogsV1",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Returns a stream of logs for a process using appId and processId.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.hathora.dev/logs/v1/:appId/process/:processId",
+            "params": [
+              {
+                "name": "appId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for an application."
+              },
+              {
+                "name": "processId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns a stream of logs for a process using appId and processId."
+        },
+        {
+          "info": {
+            "name": "Download the log file for a stopped process.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.hathora.dev/logs/v1/:appId/process/:processId/download",
+            "params": [
+              {
+                "name": "appId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for an application."
+              },
+              {
+                "name": "processId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Download the log file for a stopped process."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

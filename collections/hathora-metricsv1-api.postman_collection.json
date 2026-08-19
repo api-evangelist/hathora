@@ -1,0 +1,176 @@
+{
+  "item": [
+    {
+      "id": "a179765b-3b6d-40f9-890c-e9d11db77485",
+      "name": "MetricsV1",
+      "description": {
+        "content": "Read CPU, memory, egress, and connection metrics for a process.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "25f16241-8c90-4deb-b8ed-336017ee4587",
+          "name": "Get metrics for a process using appId and processId.",
+          "request": {
+            "name": "Get metrics for a process using appId and processId.",
+            "description": {},
+            "url": {
+              "path": [
+                "metrics",
+                "v1",
+                ":appId",
+                "process",
+                ":processId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "metrics",
+                  "value": "<string>",
+                  "description": "The metrics to retrieve."
+                },
+                {
+                  "disabled": false,
+                  "key": "metrics",
+                  "value": "<string>",
+                  "description": "The metrics to retrieve."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "appId",
+                  "description": "(Required) The unique identifier for an application."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "processId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e89a2eed-0c06-41fc-8d4c-34e8b0b77912",
+              "name": "Metrics data keyed by metric name.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "metrics",
+                    "v1",
+                    ":appId",
+                    "process",
+                    ":processId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "metrics",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "metrics",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "appId",
+                      "description": "(Required) The unique identifier for an application."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "processId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"cpu\": [\n    {\n      \"timestamp\": 5815,\n      \"value\": 1905.2652884905797\n    },\n    {\n      \"timestamp\": 7968,\n      \"value\": 9642.99139106921\n    }\n  ],\n  \"memory\": [\n    {\n      \"timestamp\": 1179,\n      \"value\": 1437.4732281364566\n    },\n    {\n      \"timestamp\": 5982,\n      \"value\": 8728.37716264266\n    }\n  ],\n  \"rate_egress\": [\n    {\n      \"timestamp\": 3683,\n      \"value\": 8819.118066352221\n    },\n    {\n      \"timestamp\": 3980,\n      \"value\": 8297.578260957982\n    }\n  ],\n  \"total_egress\": [\n    {\n      \"timestamp\": 839,\n      \"value\": 2348.8554454067257\n    },\n    {\n      \"timestamp\": 5309,\n      \"value\": 422.4515277715957\n    }\n  ],\n  \"active_connections\": [\n    {\n      \"timestamp\": 9803,\n      \"value\": 5092.33269509269\n    },\n    {\n      \"timestamp\": 340,\n      \"value\": 8831.83584469559\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.hathora.dev",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "dde227b3-2663-4ee5-8a96-b5eb0103cc02",
+    "name": "Hathora Cloud AppsV2 MetricsV1 API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Hathora Cloud is on-demand, globally distributed compute for multiplayer game servers. Use the Hathora Cloud API to manage applications, upload and run game server builds, configure deployments, launch and stop processes, create and manage rooms, discover ping endpoints, stream logs, read process metrics, and manage organization tokens and billing. Player-facing authentication issues short-lived player tokens for use with room and lobby endpoints.\n\nContact Support:\n Name: Hathora Support\n Email: support@hathora.dev",
+      "type": "text/plain"
+    }
+  }
+}

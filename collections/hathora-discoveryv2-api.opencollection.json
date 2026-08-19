@@ -1,0 +1,35 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Hathora Cloud AppsV2 DiscoveryV2 API",
+    "version": "3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "DiscoveryV2",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Returns an array of all regions with a host and port that a client can directly ping for latency-based routing.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.hathora.dev/discovery/v2/ping"
+          },
+          "docs": "Returns an array of all regions with a host and port that a client can directly ping for latency-based routing."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

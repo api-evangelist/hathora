@@ -1,0 +1,87 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Hathora Cloud AppsV2 TokensV1 API",
+    "version": "3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "TokensV1",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Returns an unsorted list of an organization's API tokens.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.hathora.dev/tokens/v1/:orgId/list",
+            "params": [
+              {
+                "name": "orgId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns an unsorted list of an organization's API tokens."
+        },
+        {
+          "info": {
+            "name": "Create a new organization API token.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.hathora.dev/tokens/v1/:orgId/create",
+            "params": [
+              {
+                "name": "orgId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new organization API token."
+        },
+        {
+          "info": {
+            "name": "Revoke an organization API token.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.hathora.dev/tokens/v1/:orgId/revoke/:orgTokenId",
+            "params": [
+              {
+                "name": "orgId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "orgTokenId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Revoke an organization API token."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

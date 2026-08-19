@@ -1,0 +1,120 @@
+{
+  "item": [
+    {
+      "id": "4e30cb0b-e4d7-42d7-b899-ad55b9ae9802",
+      "name": "DiscoveryV2",
+      "description": {
+        "content": "Region ping endpoints for latency-based routing.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "90c4b3dc-4bd2-4ef1-8bbd-2a973eec88a5",
+          "name": "Returns an array of all regions with a host and port that a client can directly ping for latency-based routing.",
+          "request": {
+            "name": "Returns an array of all regions with a host and port that a client can directly ping for latency-based routing.",
+            "description": {},
+            "url": {
+              "path": [
+                "discovery",
+                "v2",
+                "ping"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "795e69de-283f-4440-a3a1-9f00c8f70a03",
+              "name": "Ping service endpoints.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "discovery",
+                    "v2",
+                    "ping"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"region\": \"Mumbai\",\n    \"host\": \"string\",\n    \"port\": 7434\n  },\n  {\n    \"region\": \"London\",\n    \"host\": \"string\",\n    \"port\": 7104\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.hathora.dev",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "a99d13b4-0488-4046-9443-53374131bbf8",
+    "name": "Hathora Cloud AppsV2 DiscoveryV2 API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Hathora Cloud is on-demand, globally distributed compute for multiplayer game servers. Use the Hathora Cloud API to manage applications, upload and run game server builds, configure deployments, launch and stop processes, create and manage rooms, discover ping endpoints, stream logs, read process metrics, and manage organization tokens and billing. Player-facing authentication issues short-lived player tokens for use with room and lobby endpoints.\n\nContact Support:\n Name: Hathora Support\n Email: support@hathora.dev",
+      "type": "text/plain"
+    }
+  }
+}

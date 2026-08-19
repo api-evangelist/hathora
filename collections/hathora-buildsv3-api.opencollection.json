@@ -1,0 +1,148 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Hathora Cloud AppsV2 BuildsV3 API",
+    "version": "3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "BuildsV3",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Returns an array of builds for an application.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.hathora.dev/builds/v3/:appId/list",
+            "params": [
+              {
+                "name": "appId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for an application."
+              }
+            ]
+          },
+          "docs": "Returns an array of builds for an application."
+        },
+        {
+          "info": {
+            "name": "Creates a new build. Responds with a buildId that you must pass to RunBuild.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.hathora.dev/builds/v3/:appId/create",
+            "params": [
+              {
+                "name": "appId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for an application."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new build. Responds with a buildId that you must pass to RunBuild."
+        },
+        {
+          "info": {
+            "name": "Builds a game server artifact from a tarball you provide.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.hathora.dev/builds/v3/:appId/run/:buildId",
+            "params": [
+              {
+                "name": "appId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for an application."
+              },
+              {
+                "name": "buildId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": [
+                {
+                  "name": "file",
+                  "type": "text",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Builds a game server artifact from a tarball you provide."
+        },
+        {
+          "info": {
+            "name": "Get details for a build.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.hathora.dev/builds/v3/:appId/info/:buildId",
+            "params": [
+              {
+                "name": "appId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for an application."
+              },
+              {
+                "name": "buildId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get details for a build."
+        },
+        {
+          "info": {
+            "name": "Delete a build. All associated metadata is deleted.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.hathora.dev/builds/v3/:appId/delete/:buildId",
+            "params": [
+              {
+                "name": "appId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for an application."
+              },
+              {
+                "name": "buildId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a build. All associated metadata is deleted."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

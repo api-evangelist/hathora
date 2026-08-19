@@ -1,0 +1,125 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Hathora Cloud AppsV2 API",
+    "version": "3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "AppsV2",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Returns an unsorted list of your organization's applications.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.hathora.dev/apps/v2/list",
+            "params": [
+              {
+                "name": "orgId",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns an unsorted list of your organization's applications."
+        },
+        {
+          "info": {
+            "name": "Create a new application.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.hathora.dev/apps/v2/create",
+            "params": [
+              {
+                "name": "orgId",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new application."
+        },
+        {
+          "info": {
+            "name": "Update data for an existing application.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.hathora.dev/apps/v2/update/:appId",
+            "params": [
+              {
+                "name": "appId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for an application."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update data for an existing application."
+        },
+        {
+          "info": {
+            "name": "Get details for an application.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.hathora.dev/apps/v2/info/:appId",
+            "params": [
+              {
+                "name": "appId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for an application."
+              }
+            ]
+          },
+          "docs": "Get details for an application."
+        },
+        {
+          "info": {
+            "name": "Delete an application using appId. Your organization will lose access.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.hathora.dev/apps/v2/delete/:appId",
+            "params": [
+              {
+                "name": "appId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier for an application."
+              }
+            ]
+          },
+          "docs": "Delete an application using appId. Your organization will lose access."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

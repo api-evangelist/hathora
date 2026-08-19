@@ -1,0 +1,544 @@
+{
+  "item": [
+    {
+      "id": "3e47a2bf-6956-4263-8424-e4f6c22cb97f",
+      "name": "DeploymentsV3",
+      "description": {
+        "content": "Versioned runtime configuration for a build.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d1596810-dfe9-439c-aed4-4271148773a6",
+          "name": "Returns an array of deployments for an application.",
+          "request": {
+            "name": "Returns an array of deployments for an application.",
+            "description": {},
+            "url": {
+              "path": [
+                "deployments",
+                "v3",
+                ":appId",
+                "list"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "appId",
+                  "description": "(Required) The unique identifier for an application."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bb0b1ec9-a8b3-4b6b-81d5-72672819aef0",
+              "name": "A list of deployments.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "deployments",
+                    "v3",
+                    ":appId",
+                    "list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "appId",
+                      "description": "(Required) The unique identifier for an application."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"deploymentId\": 2221,\n    \"appId\": \"string\",\n    \"buildId\": \"string\",\n    \"buildTag\": \"string\",\n    \"idleTimeoutEnabled\": false,\n    \"roomsPerProcess\": 8541,\n    \"transportType\": \"string\",\n    \"containerPort\": 1417,\n    \"requestedCPU\": 4521.522294309623,\n    \"requestedMemoryMB\": 4745,\n    \"createdAt\": \"1980-03-19T11:59:23.242Z\"\n  },\n  {\n    \"deploymentId\": 2430,\n    \"appId\": \"string\",\n    \"buildId\": \"string\",\n    \"buildTag\": \"string\",\n    \"idleTimeoutEnabled\": true,\n    \"roomsPerProcess\": 5236,\n    \"transportType\": \"string\",\n    \"containerPort\": 5324,\n    \"requestedCPU\": 4618.819079753051,\n    \"requestedMemoryMB\": 7756,\n    \"createdAt\": \"1972-09-06T21:55:18.794Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5981e74a-9aea-4191-9a5c-3d76bf04fb23",
+          "name": "Create a new deployment. All new processes for the app will use the latest deployment configuration.",
+          "request": {
+            "name": "Create a new deployment. All new processes for the app will use the latest deployment configuration.",
+            "description": {},
+            "url": {
+              "path": [
+                "deployments",
+                "v3",
+                ":appId",
+                "create",
+                ":buildId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "appId",
+                  "description": "(Required) The unique identifier for an application."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "buildId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idleTimeoutEnabled\": \"<boolean>\",\n  \"roomsPerProcess\": \"<integer>\",\n  \"transportType\": \"<string>\",\n  \"containerPort\": \"<integer>\",\n  \"requestedCPU\": \"<number>\",\n  \"requestedMemoryMB\": \"<integer>\",\n  \"env\": [\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"additionalContainerPorts\": [\n    {\n      \"transportType\": \"<string>\",\n      \"port\": \"<integer>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"transportType\": \"<string>\",\n      \"port\": \"<integer>\",\n      \"name\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8bbbb55c-631f-4fdc-8f25-623b0dc786d4",
+              "name": "Deployment created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "deployments",
+                    "v3",
+                    ":appId",
+                    "create",
+                    ":buildId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "appId",
+                      "description": "(Required) The unique identifier for an application."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "buildId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"idleTimeoutEnabled\": \"<boolean>\",\n  \"roomsPerProcess\": 3,\n  \"transportType\": \"<string>\",\n  \"containerPort\": 4000,\n  \"requestedCPU\": 0.5,\n  \"requestedMemoryMB\": 1024,\n  \"env\": [\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"additionalContainerPorts\": [\n    {\n      \"transportType\": \"<string>\",\n      \"port\": \"<integer>\",\n      \"name\": \"<string>\"\n    },\n    {\n      \"transportType\": \"<string>\",\n      \"port\": \"<integer>\",\n      \"name\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"deploymentId\": 4904,\n  \"appId\": \"string\",\n  \"buildId\": \"string\",\n  \"buildTag\": \"string\",\n  \"idleTimeoutEnabled\": true,\n  \"roomsPerProcess\": 1628,\n  \"transportType\": \"string\",\n  \"containerPort\": 5360,\n  \"requestedCPU\": 6683.770953878071,\n  \"requestedMemoryMB\": 2249,\n  \"createdAt\": \"1989-09-05T07:19:54.140Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "03745bea-1248-4724-ac8d-0f4b86878ab7",
+          "name": "Get the latest deployment for an application.",
+          "request": {
+            "name": "Get the latest deployment for an application.",
+            "description": {},
+            "url": {
+              "path": [
+                "deployments",
+                "v3",
+                ":appId",
+                "latest"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "appId",
+                  "description": "(Required) The unique identifier for an application."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5748f64a-777e-4562-9aad-3216ab480ed0",
+              "name": "Latest deployment details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "deployments",
+                    "v3",
+                    ":appId",
+                    "latest"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "appId",
+                      "description": "(Required) The unique identifier for an application."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"deploymentId\": 4904,\n  \"appId\": \"string\",\n  \"buildId\": \"string\",\n  \"buildTag\": \"string\",\n  \"idleTimeoutEnabled\": true,\n  \"roomsPerProcess\": 1628,\n  \"transportType\": \"string\",\n  \"containerPort\": 5360,\n  \"requestedCPU\": 6683.770953878071,\n  \"requestedMemoryMB\": 2249,\n  \"createdAt\": \"1989-09-05T07:19:54.140Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c675c292-1fb1-4061-b687-44caf05a2315",
+          "name": "Get details for a deployment.",
+          "request": {
+            "name": "Get details for a deployment.",
+            "description": {},
+            "url": {
+              "path": [
+                "deployments",
+                "v3",
+                ":appId",
+                "info",
+                ":deploymentId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "appId",
+                  "description": "(Required) The unique identifier for an application."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "deploymentId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9f63be5d-e659-46b8-8e20-b913fd03d933",
+              "name": "Deployment details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "deployments",
+                    "v3",
+                    ":appId",
+                    "info",
+                    ":deploymentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "appId",
+                      "description": "(Required) The unique identifier for an application."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "deploymentId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"deploymentId\": 4904,\n  \"appId\": \"string\",\n  \"buildId\": \"string\",\n  \"buildTag\": \"string\",\n  \"idleTimeoutEnabled\": true,\n  \"roomsPerProcess\": 1628,\n  \"transportType\": \"string\",\n  \"containerPort\": 5360,\n  \"requestedCPU\": 6683.770953878071,\n  \"requestedMemoryMB\": 2249,\n  \"createdAt\": \"1989-09-05T07:19:54.140Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ccf3f3dc-fc8c-4c86-8214-7234e5412aca",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "deployments",
+                    "v3",
+                    ":appId",
+                    "info",
+                    ":deploymentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "appId",
+                      "description": "(Required) The unique identifier for an application."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "deploymentId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.hathora.dev",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "5a180daa-0d57-41b6-ae81-16581c6ffd00",
+    "name": "Hathora Cloud AppsV2 DeploymentsV3 API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Hathora Cloud is on-demand, globally distributed compute for multiplayer game servers. Use the Hathora Cloud API to manage applications, upload and run game server builds, configure deployments, launch and stop processes, create and manage rooms, discover ping endpoints, stream logs, read process metrics, and manage organization tokens and billing. Player-facing authentication issues short-lived player tokens for use with room and lobby endpoints.\n\nContact Support:\n Name: Hathora Support\n Email: support@hathora.dev",
+      "type": "text/plain"
+    }
+  }
+}

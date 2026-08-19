@@ -1,0 +1,68 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Hathora Cloud AppsV2 BillingV1 API",
+    "version": "3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "BillingV1",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get the current account balance.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.hathora.dev/billing/v1/balance"
+          },
+          "docs": "Get the current account balance."
+        },
+        {
+          "info": {
+            "name": "Retrieve invoice history.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.hathora.dev/billing/v1/invoices"
+          },
+          "docs": "Retrieve invoice history."
+        },
+        {
+          "info": {
+            "name": "Get stored payment method details.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.hathora.dev/billing/v1/paymentmethod"
+          },
+          "docs": "Get stored payment method details."
+        },
+        {
+          "info": {
+            "name": "Initialize a Stripe customer portal URL.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.hathora.dev/billing/v1/customerportalurl"
+          },
+          "docs": "Initialize a Stripe customer portal URL."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
