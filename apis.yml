@@ -304,6 +304,8 @@ apis:
   humanURL: https://hathora.dev/docs/api-reference/auth-v1
   baseURL: https://api.hathora.dev
   tags:
+  - Metrics V1
+  tags_raw:
   - MetricsV1
   properties:
   - type: OpenAPI
