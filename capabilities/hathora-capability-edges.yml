@@ -1,0 +1,65 @@
+slug: hathora
+provider: Hathora
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Media, Entertainment & Telecom Content
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 5
+edges:
+- tag: BillingV1
+  spec_file: hathora-billingv1-api-openapi.yml
+  capability_id: BC-4250
+  capability_id_l1: BC-4250
+  capability_name: Subscription Billing & Revenue Management
+  confidence: 0.8
+  evidence: '"GET /billing/v1/invoices  GetInvoices  Retrieve invoice history." ... "GetPaymentMethod  Get
+    stored payment method details." ... "InitStripeCustomerPortalUrl"'
+  reason: Operations expose account balance, invoice history, stored payment method and a Stripe customer
+    portal for the usage-based cloud service — clearly the commercial billing/revenue surface of a SaaS.
+    Spans both invoicing and payment-method handling, so no single L2 is named unambiguously.
+- tag: BuildsV3
+  spec_file: hathora-buildsv3-api-openapi.yml
+  capability_id: BC-4210.10
+  capability_id_l1: BC-4210
+  capability_name: Continuous Integration Management
+  confidence: 0.8
+  evidence: '"RunBuild  Builds a game server artifact from a tarball you provide." / "CreateBuild  Creates
+    a new build. Responds with a buildId that you must pass to RunBuild."'
+  reason: The tag manages build creation, execution into a deployable artefact, listing and deletion —
+    build pipelines and artefact production, i.e. continuous integration of software for release.
+- tag: DeploymentsV3
+  spec_file: hathora-deploymentsv3-api-openapi.yml
+  capability_id: BC-4210.40
+  capability_id_l1: BC-4210
+  capability_name: Deployment Orchestration
+  confidence: 0.8
+  evidence: '"CreateDeployment  Create a new deployment. All new processes for the app will use the latest
+    deployment configuration." schemas: DeploymentConfig, Deployment'
+  reason: Operations create and inspect deployment configurations that govern how the software runs in
+    production — deployment orchestration of software changes, not a media or industry capability.
+- tag: LogsV1
+  spec_file: hathora-logsv1-api-openapi.yml
+  capability_id: BC-4220.20
+  capability_id_l1: BC-4220
+  capability_name: Observability Management
+  confidence: 0.8
+  evidence: '"GetLogsForProcess  Returns a stream of logs for a process using appId and processId."'
+  reason: Streaming and downloading runtime logs for running server processes is observability of the
+    operating service (logs pillar), squarely platform operations.
+- tag: MetricsV1
+  spec_file: hathora-metricsv1-api-openapi.yml
+  capability_id: BC-4220.20
+  capability_id_l1: BC-4220
+  capability_name: Observability Management
+  confidence: 0.8
+  evidence: '"GetMetrics  Get metrics for a process using appId and processId." schemas: MetricValue,
+    MetricsResponse'
+  reason: Runtime metrics retrieval for a running process is the metrics pillar of observability for the
+    operated service, not business performance reporting.

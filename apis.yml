@@ -465,6 +465,9 @@ apis:
   - type: APIReference
     url: https://hathora.dev/api#tag/TokensV1
 common:
+- type: CapabilityMap
+  url: capabilities/hathora-capability-edges.yml
+  name: Hathora Business Capability Map
 - type: AgenticAccess
   url: agentic-access/hathora-agentic-access.yml
 - type: DomainSecurity
