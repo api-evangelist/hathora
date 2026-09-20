@@ -54,7 +54,8 @@ edges:
   reason: Streaming and downloading runtime logs for running server processes is observability of the
     operating service (logs pillar), squarely platform operations.
 - tag: MetricsV1
-  spec_file: hathora-metricsv1-api-openapi.yml
+  spec_file: hathora-metrics-v1-api-openapi.yml
+  reanchored_from: hathora-metricsv1-api-openapi.yml
   capability_id: BC-4220.20
   capability_id_l1: BC-4220
   capability_name: Observability Management
