@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Hathora Cloud AppsV2 DeploymentsV3 API
+  title: Hathora Cloud Deployments V3 API
   description: Hathora Cloud is on-demand, globally distributed compute for multiplayer game servers. Use the Hathora Cloud API to manage applications, upload and run game server builds, configure deployments, launch and stop processes, create and manage rooms, discover ping endpoints, stream logs, read process metrics, and manage organization tokens and billing. Player-facing authentication issues short-lived player tokens for use with room and lobby endpoints.
   termsOfService: https://hathora.dev/terms-of-service
   contact:
@@ -22,7 +22,7 @@ paths:
       operationId: GetDeployments
       tags:
       - DeploymentsV3
-      summary: Returns an array of deployments for an application.
+      summary: Returns an array of deployments for an application
       parameters:
       - $ref: '#/components/parameters/AppId'
       responses:
@@ -39,7 +39,7 @@ paths:
       operationId: CreateDeployment
       tags:
       - DeploymentsV3
-      summary: Create a new deployment. All new processes for the app will use the latest deployment configuration.
+      summary: Create a new deployment.
       parameters:
       - $ref: '#/components/parameters/AppId'
       - $ref: '#/components/parameters/BuildId'
@@ -61,7 +61,7 @@ paths:
       operationId: GetLatestDeployment
       tags:
       - DeploymentsV3
-      summary: Get the latest deployment for an application.
+      summary: Get the latest deployment for an application
       parameters:
       - $ref: '#/components/parameters/AppId'
       responses:
@@ -76,7 +76,7 @@ paths:
       operationId: GetDeployment
       tags:
       - DeploymentsV3
-      summary: Get details for a deployment.
+      summary: Get details for a deployment
       parameters:
       - $ref: '#/components/parameters/AppId'
       - name: deploymentId
@@ -94,6 +94,21 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
+  parameters:
+    AppId:
+      name: appId
+      in: path
+      required: true
+      description: The unique identifier for an application.
+      schema:
+        type: string
+        example: app-af469a92-5b45-4565-b3c4-b79878de67d2
+    BuildId:
+      name: buildId
+      in: path
+      required: true
+      schema:
+        type: string
   responses:
     NotFound:
       description: The requested resource was not found.
@@ -102,6 +117,11 @@ components:
           schema:
             $ref: '#/components/schemas/ApiError'
   schemas:
+    ApiError:
+      type: object
+      properties:
+        message:
+          type: string
     Deployment:
       type: object
       properties:
@@ -128,11 +148,6 @@ components:
         createdAt:
           type: string
           format: date-time
-    ApiError:
-      type: object
-      properties:
-        message:
-          type: string
     DeploymentConfig:
       type: object
       required:
@@ -183,21 +198,6 @@ components:
                 type: integer
               name:
                 type: string
-  parameters:
-    BuildId:
-      name: buildId
-      in: path
-      required: true
-      schema:
-        type: string
-    AppId:
-      name: appId
-      in: path
-      required: true
-      description: The unique identifier for an application.
-      schema:
-        type: string
-        example: app-af469a92-5b45-4565-b3c4-b79878de67d2
   securitySchemes:
     hathoraDevToken:
       type: http

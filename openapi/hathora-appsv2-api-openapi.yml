@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Hathora Cloud AppsV2 API
+  title: Hathora Cloud Apps V2 API
   description: Hathora Cloud is on-demand, globally distributed compute for multiplayer game servers. Use the Hathora Cloud API to manage applications, upload and run game server builds, configure deployments, launch and stop processes, create and manage rooms, discover ping endpoints, stream logs, read process metrics, and manage organization tokens and billing. Player-facing authentication issues short-lived player tokens for use with room and lobby endpoints.
   termsOfService: https://hathora.dev/terms-of-service
   contact:
@@ -22,7 +22,7 @@ paths:
       operationId: GetApps
       tags:
       - AppsV2
-      summary: Returns an unsorted list of your organization's applications.
+      summary: Returns an unsorted list of your organization's applications
       parameters:
       - $ref: '#/components/parameters/OrgIdQuery'
       responses:
@@ -39,7 +39,7 @@ paths:
       operationId: CreateApp
       tags:
       - AppsV2
-      summary: Create a new application.
+      summary: Create a new application
       parameters:
       - $ref: '#/components/parameters/OrgIdQuery'
       requestBody:
@@ -60,7 +60,7 @@ paths:
       operationId: UpdateApp
       tags:
       - AppsV2
-      summary: Update data for an existing application.
+      summary: Update data for an existing application
       parameters:
       - $ref: '#/components/parameters/AppId'
       requestBody:
@@ -81,7 +81,7 @@ paths:
       operationId: GetApp
       tags:
       - AppsV2
-      summary: Get details for an application.
+      summary: Get details for an application
       parameters:
       - $ref: '#/components/parameters/AppId'
       responses:
@@ -98,7 +98,7 @@ paths:
       operationId: DeleteApp
       tags:
       - AppsV2
-      summary: Delete an application using appId. Your organization will lose access.
+      summary: Delete an application using appId. Your organization will lose access
       parameters:
       - $ref: '#/components/parameters/AppId'
       responses:
@@ -107,14 +107,39 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  responses:
-    NotFound:
-      description: The requested resource was not found.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ApiError'
+  parameters:
+    AppId:
+      name: appId
+      in: path
+      required: true
+      description: The unique identifier for an application.
+      schema:
+        type: string
+        example: app-af469a92-5b45-4565-b3c4-b79878de67d2
+    OrgIdQuery:
+      name: orgId
+      in: query
+      required: false
+      schema:
+        type: string
   schemas:
+    Application:
+      type: object
+      properties:
+        appId:
+          type: string
+        appName:
+          type: string
+        orgId:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        deletedAt:
+          type:
+          - string
+          - 'null'
+          format: date-time
     AppConfig:
       type: object
       required:
@@ -131,37 +156,13 @@ components:
       properties:
         message:
           type: string
-    Application:
-      type: object
-      properties:
-        appId:
-          type: string
-        appName:
-          type: string
-        orgId:
-          type: string
-        createdAt:
-          type: string
-          format: date-time
-        deletedAt:
-          type: string
-          format: date-time
-          nullable: true
-  parameters:
-    OrgIdQuery:
-      name: orgId
-      in: query
-      required: false
-      schema:
-        type: string
-    AppId:
-      name: appId
-      in: path
-      required: true
-      description: The unique identifier for an application.
-      schema:
-        type: string
-        example: app-af469a92-5b45-4565-b3c4-b79878de67d2
+  responses:
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ApiError'
   securitySchemes:
     hathoraDevToken:
       type: http

@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Hathora Cloud AppsV2 MetricsV1 API
+  title: Hathora Cloud Metrics V1 API
   description: Hathora Cloud is on-demand, globally distributed compute for multiplayer game servers. Use the Hathora Cloud API to manage applications, upload and run game server builds, configure deployments, launch and stop processes, create and manage rooms, discover ping endpoints, stream logs, read process metrics, and manage organization tokens and billing. Player-facing authentication issues short-lived player tokens for use with room and lobby endpoints.
   termsOfService: https://hathora.dev/terms-of-service
   contact:
@@ -14,15 +14,15 @@ servers:
 security:
 - hathoraDevToken: []
 tags:
-- name: MetricsV1
+- name: Metrics V1
   description: Read CPU, memory, egress, and connection metrics for a process.
 paths:
   /metrics/v1/{appId}/process/{processId}:
     get:
       operationId: GetMetrics
       tags:
-      - MetricsV1
-      summary: Get metrics for a process using appId and processId.
+      - Metrics V1
+      summary: Get metrics for a process using appId and processId
       parameters:
       - $ref: '#/components/parameters/AppId'
       - $ref: '#/components/parameters/ProcessId'
@@ -47,22 +47,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/MetricsResponse'
 components:
-  parameters:
-    AppId:
-      name: appId
-      in: path
-      required: true
-      description: The unique identifier for an application.
-      schema:
-        type: string
-        example: app-af469a92-5b45-4565-b3c4-b79878de67d2
-    ProcessId:
-      name: processId
-      in: path
-      required: true
-      schema:
-        type: string
-        example: cbfbb - 12345
   schemas:
     MetricValue:
       type: object
@@ -96,6 +80,22 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/MetricValue'
+  parameters:
+    ProcessId:
+      name: processId
+      in: path
+      required: true
+      schema:
+        type: string
+        example: cbfbb - 12345
+    AppId:
+      name: appId
+      in: path
+      required: true
+      description: The unique identifier for an application.
+      schema:
+        type: string
+        example: app-af469a92-5b45-4565-b3c4-b79878de67d2
   securitySchemes:
     hathoraDevToken:
       type: http

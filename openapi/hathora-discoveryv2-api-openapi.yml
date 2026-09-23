@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Hathora Cloud AppsV2 DiscoveryV2 API
+  title: Hathora Cloud Discovery V2 API
   description: Hathora Cloud is on-demand, globally distributed compute for multiplayer game servers. Use the Hathora Cloud API to manage applications, upload and run game server builds, configure deployments, launch and stop processes, create and manage rooms, discover ping endpoints, stream logs, read process metrics, and manage organization tokens and billing. Player-facing authentication issues short-lived player tokens for use with room and lobby endpoints.
   termsOfService: https://hathora.dev/terms-of-service
   contact:
@@ -22,7 +22,7 @@ paths:
       operationId: GetPingServiceEndpoints
       tags:
       - DiscoveryV2
-      summary: Returns an array of all regions with a host and port that a client can directly ping for latency-based routing.
+      summary: Returns an array of all regions with a host and port that a client can directly…
       security: []
       responses:
         '200':

@@ -1,17 +1,7 @@
 {
   "provider": "hathora",
   "sources": [
-    "hathora-appsv2-api-openapi.yml",
-    "hathora-authv1-api-openapi.yml",
-    "hathora-billingv1-api-openapi.yml",
-    "hathora-buildsv3-api-openapi.yml",
-    "hathora-deploymentsv3-api-openapi.yml",
-    "hathora-discoveryv2-api-openapi.yml",
-    "hathora-logsv1-api-openapi.yml",
-    "hathora-metricsv1-api-openapi.yml",
-    "hathora-processesv3-api-openapi.yml",
-    "hathora-roomsv2-api-openapi.yml",
-    "hathora-tokensv1-api-openapi.yml"
+    "_original/hathora-openapi.yml"
   ],
   "outputs": [
     "hathora-appsv2-api-openapi.yml",
@@ -26,9 +16,28 @@
     "hathora-roomsv2-api-openapi.yml",
     "hathora-tokensv1-api-openapi.yml"
   ],
-  "archived": [],
+  "archived": [
+    "deleted 1 superseded output(s) from the previous generation"
+  ],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "hathora-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "superseded outputs removed: hathora-metrics-v1-api-openapi.yml",
+    "apis.yml register: written (+1 apis, 11 total)"
+  ],
+  "skipped": [
+    "hathora-appsv2-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "hathora-authv1-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "hathora-billingv1-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "hathora-buildsv3-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "hathora-deploymentsv3-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "hathora-discoveryv2-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "hathora-logsv1-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "hathora-metrics-v1-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "hathora-processesv3-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "hathora-roomsv2-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "hathora-tokensv1-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

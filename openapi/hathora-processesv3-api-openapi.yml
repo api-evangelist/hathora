@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Hathora Cloud AppsV2 ProcessesV3 API
+  title: Hathora Cloud Processes V3 API
   description: Hathora Cloud is on-demand, globally distributed compute for multiplayer game servers. Use the Hathora Cloud API to manage applications, upload and run game server builds, configure deployments, launch and stop processes, create and manage rooms, discover ping endpoints, stream logs, read process metrics, and manage organization tokens and billing. Player-facing authentication issues short-lived player tokens for use with room and lobby endpoints.
   termsOfService: https://hathora.dev/terms-of-service
   contact:
@@ -22,7 +22,7 @@ paths:
       operationId: GetLatestProcesses
       tags:
       - ProcessesV3
-      summary: Retrieve the latest process objects for an application.
+      summary: Retrieve the latest process objects for an application
       parameters:
       - $ref: '#/components/parameters/AppId'
       responses:
@@ -39,7 +39,7 @@ paths:
       operationId: CreateProcess
       tags:
       - ProcessesV3
-      summary: Start a new process in a specific region.
+      summary: Start a new process in a specific region
       parameters:
       - $ref: '#/components/parameters/AppId'
       requestBody:
@@ -65,7 +65,7 @@ paths:
       operationId: GetProcess
       tags:
       - ProcessesV3
-      summary: Get details for a process.
+      summary: Get details for a process
       parameters:
       - $ref: '#/components/parameters/AppId'
       - $ref: '#/components/parameters/ProcessId'
@@ -83,7 +83,7 @@ paths:
       operationId: StopProcess
       tags:
       - ProcessesV3
-      summary: Stop a running process.
+      summary: Stop a running process
       parameters:
       - $ref: '#/components/parameters/AppId'
       - $ref: '#/components/parameters/ProcessId'
@@ -91,6 +91,22 @@ paths:
         '204':
           description: Process stopped.
 components:
+  parameters:
+    AppId:
+      name: appId
+      in: path
+      required: true
+      description: The unique identifier for an application.
+      schema:
+        type: string
+        example: app-af469a92-5b45-4565-b3c4-b79878de67d2
+    ProcessId:
+      name: processId
+      in: path
+      required: true
+      schema:
+        type: string
+        example: cbfbb - 12345
   responses:
     NotFound:
       description: The requested resource was not found.
@@ -99,6 +115,11 @@ components:
           schema:
             $ref: '#/components/schemas/ApiError'
   schemas:
+    ApiError:
+      type: object
+      properties:
+        message:
+          type: string
     Process:
       type: object
       properties:
@@ -130,13 +151,15 @@ components:
           type: string
           format: date-time
         stoppingAt:
-          type: string
+          type:
+          - string
+          - 'null'
           format: date-time
-          nullable: true
         terminatedAt:
-          type: string
+          type:
+          - string
+          - 'null'
           format: date-time
-          nullable: true
     Region:
       type: string
       description: The region where a process, room, or lobby runs.
@@ -152,27 +175,6 @@ components:
       - Tokyo
       - Sydney
       - Sao_Paulo
-    ApiError:
-      type: object
-      properties:
-        message:
-          type: string
-  parameters:
-    ProcessId:
-      name: processId
-      in: path
-      required: true
-      schema:
-        type: string
-        example: cbfbb - 12345
-    AppId:
-      name: appId
-      in: path
-      required: true
-      description: The unique identifier for an application.
-      schema:
-        type: string
-        example: app-af469a92-5b45-4565-b3c4-b79878de67d2
   securitySchemes:
     hathoraDevToken:
       type: http
