@@ -91,18 +91,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/PlayerTokenObject'
 components:
-  schemas:
-    ApiError:
-      type: object
-      properties:
-        message:
-          type: string
-    PlayerTokenObject:
-      type: object
-      properties:
-        token:
-          type: string
-          description: A signed JWT player token.
   responses:
     NotFound:
       description: The requested resource was not found.
@@ -110,6 +98,18 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ApiError'
+  schemas:
+    PlayerTokenObject:
+      type: object
+      properties:
+        token:
+          type: string
+          description: A signed JWT player token.
+    ApiError:
+      type: object
+      properties:
+        message:
+          type: string
   parameters:
     AppId:
       name: appId

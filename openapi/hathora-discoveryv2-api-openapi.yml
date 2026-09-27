@@ -35,15 +35,6 @@ paths:
                   $ref: '#/components/schemas/DiscoveryResponse'
 components:
   schemas:
-    DiscoveryResponse:
-      type: object
-      properties:
-        region:
-          $ref: '#/components/schemas/Region'
-        host:
-          type: string
-        port:
-          type: integer
     Region:
       type: string
       description: The region where a process, room, or lobby runs.
@@ -59,6 +50,15 @@ components:
       - Tokyo
       - Sydney
       - Sao_Paulo
+    DiscoveryResponse:
+      type: object
+      properties:
+        region:
+          $ref: '#/components/schemas/Region'
+        host:
+          type: string
+        port:
+          type: integer
   securitySchemes:
     hathoraDevToken:
       type: http

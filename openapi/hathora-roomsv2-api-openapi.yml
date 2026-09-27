@@ -93,48 +93,23 @@ paths:
         '204':
           description: Room destroyed.
 components:
+  parameters:
+    RoomId:
+      name: roomId
+      in: path
+      required: true
+      schema:
+        type: string
+        example: 2swovpy1fnunu
+    AppId:
+      name: appId
+      in: path
+      required: true
+      description: The unique identifier for an application.
+      schema:
+        type: string
+        example: app-af469a92-5b45-4565-b3c4-b79878de67d2
   schemas:
-    ConnectionInfo:
-      type: object
-      properties:
-        status:
-          type: string
-          enum:
-          - starting
-          - active
-        roomId:
-          type: string
-        exposedPort:
-          type: object
-          properties:
-            transportType:
-              type: string
-            port:
-              type: integer
-            host:
-              type: string
-            name:
-              type: string
-    ApiError:
-      type: object
-      properties:
-        message:
-          type: string
-    Region:
-      type: string
-      description: The region where a process, room, or lobby runs.
-      enum:
-      - Seattle
-      - Los_Angeles
-      - Washington_DC
-      - Chicago
-      - London
-      - Frankfurt
-      - Mumbai
-      - Singapore
-      - Tokyo
-      - Sydney
-      - Sao_Paulo
     Room:
       type: object
       properties:
@@ -164,6 +139,47 @@ components:
           - active
           - suspended
           - destroyed
+    ApiError:
+      type: object
+      properties:
+        message:
+          type: string
+    ConnectionInfo:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+          - starting
+          - active
+        roomId:
+          type: string
+        exposedPort:
+          type: object
+          properties:
+            transportType:
+              type: string
+            port:
+              type: integer
+            host:
+              type: string
+            name:
+              type: string
+    Region:
+      type: string
+      description: The region where a process, room, or lobby runs.
+      enum:
+      - Seattle
+      - Los_Angeles
+      - Washington_DC
+      - Chicago
+      - London
+      - Frankfurt
+      - Mumbai
+      - Singapore
+      - Tokyo
+      - Sydney
+      - Sao_Paulo
     RoomCreated:
       type: object
       properties:
@@ -171,22 +187,6 @@ components:
           type: string
         processId:
           type: string
-  parameters:
-    AppId:
-      name: appId
-      in: path
-      required: true
-      description: The unique identifier for an application.
-      schema:
-        type: string
-        example: app-af469a92-5b45-4565-b3c4-b79878de67d2
-    RoomId:
-      name: roomId
-      in: path
-      required: true
-      schema:
-        type: string
-        example: 2swovpy1fnunu
   responses:
     NotFound:
       description: The requested resource was not found.

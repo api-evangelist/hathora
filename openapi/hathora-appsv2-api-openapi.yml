@@ -107,22 +107,23 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  parameters:
-    AppId:
-      name: appId
-      in: path
-      required: true
-      description: The unique identifier for an application.
-      schema:
-        type: string
-        example: app-af469a92-5b45-4565-b3c4-b79878de67d2
-    OrgIdQuery:
-      name: orgId
-      in: query
-      required: false
-      schema:
-        type: string
   schemas:
+    ApiError:
+      type: object
+      properties:
+        message:
+          type: string
+    AppConfig:
+      type: object
+      required:
+      - appName
+      properties:
+        appName:
+          type: string
+          example: minecraft
+        authConfiguration:
+          type: object
+          description: Configuration for player auth providers.
     Application:
       type: object
       properties:
@@ -140,22 +141,21 @@ components:
           - string
           - 'null'
           format: date-time
-    AppConfig:
-      type: object
-      required:
-      - appName
-      properties:
-        appName:
-          type: string
-          example: minecraft
-        authConfiguration:
-          type: object
-          description: Configuration for player auth providers.
-    ApiError:
-      type: object
-      properties:
-        message:
-          type: string
+  parameters:
+    OrgIdQuery:
+      name: orgId
+      in: query
+      required: false
+      schema:
+        type: string
+    AppId:
+      name: appId
+      in: path
+      required: true
+      description: The unique identifier for an application.
+      schema:
+        type: string
+        example: app-af469a92-5b45-4565-b3c4-b79878de67d2
   responses:
     NotFound:
       description: The requested resource was not found.
