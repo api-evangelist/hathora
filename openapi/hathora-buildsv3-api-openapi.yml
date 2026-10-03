@@ -122,12 +122,6 @@ paths:
           description: Build deleted.
 components:
   parameters:
-    BuildId:
-      name: buildId
-      in: path
-      required: true
-      schema:
-        type: string
     AppId:
       name: appId
       in: path
@@ -136,6 +130,12 @@ components:
       schema:
         type: string
         example: app-af469a92-5b45-4565-b3c4-b79878de67d2
+    BuildId:
+      name: buildId
+      in: path
+      required: true
+      schema:
+        type: string
   schemas:
     Build:
       type: object
