@@ -93,64 +93,7 @@ paths:
         '204':
           description: Room destroyed.
 components:
-  parameters:
-    AppId:
-      name: appId
-      in: path
-      required: true
-      description: The unique identifier for an application.
-      schema:
-        type: string
-        example: app-af469a92-5b45-4565-b3c4-b79878de67d2
-    RoomId:
-      name: roomId
-      in: path
-      required: true
-      schema:
-        type: string
-        example: 2swovpy1fnunu
   schemas:
-    RoomCreated:
-      type: object
-      properties:
-        roomId:
-          type: string
-        processId:
-          type: string
-    ApiError:
-      type: object
-      properties:
-        message:
-          type: string
-    Room:
-      type: object
-      properties:
-        roomId:
-          type: string
-        appId:
-          type: string
-        currentAllocation:
-          type: object
-          properties:
-            processId:
-              type: string
-            roomAllocationId:
-              type: string
-            scheduledAt:
-              type: string
-              format: date-time
-            unscheduledAt:
-              type:
-              - string
-              - 'null'
-              format: date-time
-        status:
-          type: string
-          enum:
-          - scheduling
-          - active
-          - suspended
-          - destroyed
     Region:
       type: string
       description: The region where a process, room, or lobby runs.
@@ -187,6 +130,63 @@ components:
               type: string
             name:
               type: string
+    ApiError:
+      type: object
+      properties:
+        message:
+          type: string
+    Room:
+      type: object
+      properties:
+        roomId:
+          type: string
+        appId:
+          type: string
+        currentAllocation:
+          type: object
+          properties:
+            processId:
+              type: string
+            roomAllocationId:
+              type: string
+            scheduledAt:
+              type: string
+              format: date-time
+            unscheduledAt:
+              type:
+              - string
+              - 'null'
+              format: date-time
+        status:
+          type: string
+          enum:
+          - scheduling
+          - active
+          - suspended
+          - destroyed
+    RoomCreated:
+      type: object
+      properties:
+        roomId:
+          type: string
+        processId:
+          type: string
+  parameters:
+    AppId:
+      name: appId
+      in: path
+      required: true
+      description: The unique identifier for an application.
+      schema:
+        type: string
+        example: app-af469a92-5b45-4565-b3c4-b79878de67d2
+    RoomId:
+      name: roomId
+      in: path
+      required: true
+      schema:
+        type: string
+        example: 2swovpy1fnunu
   responses:
     NotFound:
       description: The requested resource was not found.

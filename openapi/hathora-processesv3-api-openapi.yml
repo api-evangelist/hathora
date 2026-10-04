@@ -91,28 +91,7 @@ paths:
         '204':
           description: Process stopped.
 components:
-  parameters:
-    AppId:
-      name: appId
-      in: path
-      required: true
-      description: The unique identifier for an application.
-      schema:
-        type: string
-        example: app-af469a92-5b45-4565-b3c4-b79878de67d2
-    ProcessId:
-      name: processId
-      in: path
-      required: true
-      schema:
-        type: string
-        example: cbfbb - 12345
   schemas:
-    ApiError:
-      type: object
-      properties:
-        message:
-          type: string
     Region:
       type: string
       description: The region where a process, room, or lobby runs.
@@ -168,6 +147,27 @@ components:
           - string
           - 'null'
           format: date-time
+    ApiError:
+      type: object
+      properties:
+        message:
+          type: string
+  parameters:
+    ProcessId:
+      name: processId
+      in: path
+      required: true
+      schema:
+        type: string
+        example: cbfbb - 12345
+    AppId:
+      name: appId
+      in: path
+      required: true
+      description: The unique identifier for an application.
+      schema:
+        type: string
+        example: app-af469a92-5b45-4565-b3c4-b79878de67d2
   responses:
     NotFound:
       description: The requested resource was not found.

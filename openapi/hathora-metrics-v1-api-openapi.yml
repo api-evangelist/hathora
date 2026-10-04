@@ -48,6 +48,13 @@ paths:
                 $ref: '#/components/schemas/MetricsResponse'
 components:
   parameters:
+    ProcessId:
+      name: processId
+      in: path
+      required: true
+      schema:
+        type: string
+        example: cbfbb - 12345
     AppId:
       name: appId
       in: path
@@ -56,23 +63,7 @@ components:
       schema:
         type: string
         example: app-af469a92-5b45-4565-b3c4-b79878de67d2
-    ProcessId:
-      name: processId
-      in: path
-      required: true
-      schema:
-        type: string
-        example: cbfbb - 12345
   schemas:
-    MetricValue:
-      type: object
-      properties:
-        timestamp:
-          type: integer
-          format: int64
-        value:
-          type: number
-          format: double
     MetricsResponse:
       type: object
       properties:
@@ -96,6 +87,15 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/MetricValue'
+    MetricValue:
+      type: object
+      properties:
+        timestamp:
+          type: integer
+          format: int64
+        value:
+          type: number
+          format: double
   securitySchemes:
     hathoraDevToken:
       type: http
