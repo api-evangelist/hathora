@@ -100,6 +100,18 @@ components:
       schema:
         type: string
         example: app-af469a92-5b45-4565-b3c4-b79878de67d2
+  schemas:
+    ApiError:
+      type: object
+      properties:
+        message:
+          type: string
+    PlayerTokenObject:
+      type: object
+      properties:
+        token:
+          type: string
+          description: A signed JWT player token.
   responses:
     NotFound:
       description: The requested resource was not found.
@@ -107,18 +119,6 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ApiError'
-  schemas:
-    PlayerTokenObject:
-      type: object
-      properties:
-        token:
-          type: string
-          description: A signed JWT player token.
-    ApiError:
-      type: object
-      properties:
-        message:
-          type: string
   securitySchemes:
     hathoraDevToken:
       type: http

@@ -83,14 +83,6 @@ paths:
         '204':
           description: Token revoked.
 components:
-  parameters:
-    OrgId:
-      name: orgId
-      in: path
-      required: true
-      schema:
-        type: string
-        example: org-6f706e83-0ec1-437a-9a46-7d4281eb2f39
   schemas:
     OrgToken:
       type: object
@@ -107,6 +99,14 @@ components:
         createdAt:
           type: string
           format: date-time
+  parameters:
+    OrgId:
+      name: orgId
+      in: path
+      required: true
+      schema:
+        type: string
+        example: org-6f706e83-0ec1-437a-9a46-7d4281eb2f39
   securitySchemes:
     hathoraDevToken:
       type: http

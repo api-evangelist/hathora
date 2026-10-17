@@ -92,21 +92,11 @@ paths:
           description: Process stopped.
 components:
   schemas:
-    Region:
-      type: string
-      description: The region where a process, room, or lobby runs.
-      enum:
-      - Seattle
-      - Los_Angeles
-      - Washington_DC
-      - Chicago
-      - London
-      - Frankfurt
-      - Mumbai
-      - Singapore
-      - Tokyo
-      - Sydney
-      - Sao_Paulo
+    ApiError:
+      type: object
+      properties:
+        message:
+          type: string
     Process:
       type: object
       properties:
@@ -147,11 +137,21 @@ components:
           - string
           - 'null'
           format: date-time
-    ApiError:
-      type: object
-      properties:
-        message:
-          type: string
+    Region:
+      type: string
+      description: The region where a process, room, or lobby runs.
+      enum:
+      - Seattle
+      - Los_Angeles
+      - Washington_DC
+      - Chicago
+      - London
+      - Frankfurt
+      - Mumbai
+      - Singapore
+      - Tokyo
+      - Sydney
+      - Sao_Paulo
   parameters:
     ProcessId:
       name: processId
