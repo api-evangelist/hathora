@@ -127,6 +127,8 @@ apis:
   humanURL: https://hathora.dev/docs/api-reference/auth-v1
   baseURL: https://api.hathora.dev
   tags:
+  - Billing (v1)
+  tags_raw:
   - BillingV1
   properties:
   - type: OpenAPI
@@ -393,6 +395,8 @@ apis:
   humanURL: https://hathora.dev/docs/api-reference/auth-v1
   baseURL: https://api.hathora.dev
   tags:
+  - Tokens (v1)
+  tags_raw:
   - TokensV1
   properties:
   - type: OpenAPI
