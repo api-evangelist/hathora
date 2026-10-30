@@ -1,4 +1,4 @@
-# Hathora (hathora)
+# Hathora
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,265 +66,136 @@
 
 Hathora provides on-demand, globally distributed dedicated compute for multiplayer games. Hathora Cloud spins game server processes up and down across regions in response to player demand, exposing a REST API to manage applications, builds, deployments, processes, rooms, discovery/ping, logs, metrics, billing, and organization tokens, plus a player-authentication surface that issues short-lived player tokens.
 
-> **Note:** Hathora is winding down its public Hathora Cloud offering and moving to GameFabric (hathora.dev/pricing redirects to gamefabric.com). This entry documents the Hathora Cloud REST API at its last public state. See `review.yml` for details.
+**Areas:** Game Servers · Multiplayer · Compute · Hosting · Orchestration
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/hathora/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/hathora/refs/heads/main/apis.yml)
+## Hathora on APIs.io
 
-## Tags
+Everything profiled for Hathora is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/hathora/](https://apis.io/providers/hathora/)** — or go straight to one of the APIs or properties below.
 
-- Game Servers
-- Multiplayer
-- Compute
-- Hosting
-- Orchestration
+### APIs (11)
 
-## Timestamps
+- [Hathora AppsV2 API](https://apis.io/apis/hathora/hathora-appsv2-api/) — Create and manage your organization's applications.
+- [Hathora AuthV1 API](https://apis.io/apis/hathora/hathora-authv1-api/) — Player authentication - issue short-lived player tokens.
+- [Hathora BillingV1 API](https://apis.io/apis/hathora/hathora-billingv1-api/) — Account balance, invoices, payment method, and Stripe portal.
+- [Hathora BuildsV3 API](https://apis.io/apis/hathora/hathora-buildsv3-api/) — Upload and manage game server build artifacts.
+- [Hathora DeploymentsV3 API](https://apis.io/apis/hathora/hathora-deploymentsv3-api/) — Versioned runtime configuration for a build.
+- [Hathora DiscoveryV2 API](https://apis.io/apis/hathora/hathora-discoveryv2-api/) — Region ping endpoints for latency-based routing.
+- [Hathora LogsV1 API](https://apis.io/apis/hathora/hathora-logsv1-api/) — Stream and download logs for processes.
+- [Hathora ProcessesV3 API](https://apis.io/apis/hathora/hathora-processesv3-api/) — Launch, inspect, and stop running game server processes.
+- [Hathora RoomsV2 API](https://apis.io/apis/hathora/hathora-roomsv2-api/) — Create, inspect, and destroy rooms and get connection info.
+- [Hathora TokensV1 API](https://apis.io/apis/hathora/hathora-tokensv1-api/) — Create, list, and revoke organization API tokens.
+- [Hathora Metrics V1 API](https://apis.io/apis/hathora/hathora-metrics-v1-api/) — Read CPU, memory, egress, and connection metrics for a process.
 
-- **Created:** 2026-07-01
-- **Modified:** 2026-07-01
+### Published properties
 
-## APIs
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-### Hathora Auth API
+#### Agentic access (1)
 
-Issues short-lived player tokens for game clients via anonymous, nickname, and Google OIDC login flows, used to authorize room and lobby operations.
+Which operations an agent can call, which act, and which need a human in the loop.
 
-- **Human URL:** [https://hathora.dev/docs/api-reference/auth-v1](https://hathora.dev/docs/api-reference/auth-v1)
-- **Base URL:** `https://api.hathora.dev`
+- [Hathora Agentic Access](https://apis.io/agentic-access/hathora/hathora-agentic-access/)
 
-#### Tags
+#### Collections (12)
 
-- Authentication
-- Player Tokens
-- JWT
+Postman and Open Collection request collections.
 
-#### Properties
+- [Hathora Cloud API](https://apis.io/collections/hathora/open-hathora/)
+- [Hathora Cloud AppsV2 API](https://apis.io/collections/hathora/open-hathora-appsv2-api/)
+- [Hathora Cloud AppsV2 AuthV1 API](https://apis.io/collections/hathora/open-hathora-authv1-api/)
+- [Hathora Cloud AppsV2 BillingV1 API](https://apis.io/collections/hathora/open-hathora-billingv1-api/)
+- [Hathora Cloud AppsV2 BuildsV3 API](https://apis.io/collections/hathora/open-hathora-buildsv3-api/)
+- [Hathora Cloud AppsV2 DeploymentsV3 API](https://apis.io/collections/hathora/open-hathora-deploymentsv3-api/)
+- [Hathora Cloud AppsV2 DiscoveryV2 API](https://apis.io/collections/hathora/open-hathora-discoveryv2-api/)
+- [Hathora Cloud AppsV2 LogsV1 API](https://apis.io/collections/hathora/open-hathora-logsv1-api/)
+- [Hathora Cloud AppsV2 MetricsV1 API](https://apis.io/collections/hathora/open-hathora-metricsv1-api/)
+- [Hathora Cloud AppsV2 ProcessesV3 API](https://apis.io/collections/hathora/open-hathora-processesv3-api/)
+- [Hathora Cloud AppsV2 RoomsV2 API](https://apis.io/collections/hathora/open-hathora-roomsv2-api/)
+- [Hathora Cloud AppsV2 TokensV1 API](https://apis.io/collections/hathora/open-hathora-tokensv1-api/)
 
-- [Documentation](https://hathora.dev/docs)
-- [API Reference](https://hathora.dev/api#tag/AuthV1)
-- [OpenAPI](openapi/hathora-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/hathora.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/hathora.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Security (2)
 
-### Hathora Apps API
+Authentication, trust centre, and vulnerability disclosure.
 
-Create, list, read, update, and delete the applications that group your game server builds, deployments, and processes under an organization.
+- [Hathora Authentication](https://apis.io/security/hathora/hathora-authentication/)
+- [Hathora Domain Security](https://apis.io/security/hathora/hathora-domain-security/)
 
-- **Human URL:** [https://hathora.dev/docs/api-reference/apps-v2](https://hathora.dev/docs/api-reference/apps-v2)
-- **Base URL:** `https://api.hathora.dev`
+#### Plans and pricing (1)
 
-#### Tags
+Published plans, tiers and prices.
 
-- Applications
-- Management
+- [Hathora Plans Pricing](https://apis.io/plans/hathora/hathora-plans-pricing/)
 
-#### Properties
+#### Rate limits (1)
 
-- [Documentation](https://hathora.dev/docs)
-- [API Reference](https://hathora.dev/api#tag/AppsV2)
-- [OpenAPI](openapi/hathora-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/hathora.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/hathora.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Published request limits.
 
-### Hathora Builds API
+- [Hathora Rate Limits](https://apis.io/rate-limits/hathora/hathora-rate-limits/)
 
-Create a build, upload a game server tarball, run the build into a container image, and list, inspect, or delete builds for an application.
+#### FinOps (1)
 
-- **Human URL:** [https://hathora.dev/docs/api-reference/builds-v3](https://hathora.dev/docs/api-reference/builds-v3)
-- **Base URL:** `https://api.hathora.dev`
+What the API costs to run, by operation.
 
-#### Tags
+- [Hathora Finops](https://apis.io/finops/hathora/hathora-finops/)
 
-- Builds
-- Container Images
-- Deploy
+## Where to find this API
 
-#### Properties
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-- [Documentation](https://hathora.dev/docs)
-- [API Reference](https://hathora.dev/api#tag/BuildsV3)
-- [OpenAPI](openapi/hathora-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/hathora.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/hathora.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Hathora Deployments API
-
-Create and read deployments — the versioned runtime configuration (CPU, memory, transport, ports, env, rooms-per-process, idle timeout) that binds a build to how new processes run.
-
-- **Human URL:** [https://hathora.dev/docs/api-reference/deployments-v3](https://hathora.dev/docs/api-reference/deployments-v3)
-- **Base URL:** `https://api.hathora.dev`
-
-#### Tags
-
-- Deployments
-- Runtime Configuration
-
-#### Properties
-
-- [Documentation](https://hathora.dev/docs)
-- [API Reference](https://hathora.dev/api#tag/DeploymentsV3)
-- [OpenAPI](openapi/hathora-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/hathora.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/hathora.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Hathora Processes API
-
-Start game server processes in a chosen region, list latest processes, read process details (host, port, allocation, status), and stop a running process.
-
-- **Human URL:** [https://hathora.dev/docs/api-reference/processes-v3](https://hathora.dev/docs/api-reference/processes-v3)
-- **Base URL:** `https://api.hathora.dev`
-
-#### Tags
-
-- Processes
-- Compute
-- Lifecycle
-
-#### Properties
-
-- [Documentation](https://hathora.dev/docs)
-- [API Reference](https://hathora.dev/api#tag/ProcessesV3)
-- [OpenAPI](openapi/hathora-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/hathora.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/hathora.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Hathora Rooms API
-
-Create rooms on running processes, poll for connection info (host/port), read room status, and destroy rooms — the unit game clients connect to for a match.
-
-- **Human URL:** [https://hathora.dev/docs/api-reference/rooms-v2](https://hathora.dev/docs/api-reference/rooms-v2)
-- **Base URL:** `https://api.hathora.dev`
-
-#### Tags
-
-- Rooms
-- Matchmaking
-- Connection Info
-
-#### Properties
-
-- [Documentation](https://hathora.dev/docs)
-- [API Reference](https://hathora.dev/api#tag/RoomsV2)
-- [OpenAPI](openapi/hathora-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/hathora.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/hathora.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Hathora Discovery API
-
-Returns every region with a host and port that a game client can directly ping, enabling latency-based routing to the nearest region.
-
-- **Human URL:** [https://hathora.dev/docs/api-reference/discovery-v2](https://hathora.dev/docs/api-reference/discovery-v2)
-- **Base URL:** `https://api.hathora.dev`
-
-#### Tags
-
-- Discovery
-- Ping
-- Latency
-
-#### Properties
-
-- [Documentation](https://hathora.dev/docs)
-- [API Reference](https://hathora.dev/api#tag/DiscoveryV2)
-- [OpenAPI](openapi/hathora-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/hathora.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/hathora.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Hathora Logs API
-
-Stream live logs for a running process and download the full log file for a stopped process, keyed by appId and processId.
-
-- **Human URL:** [https://hathora.dev/docs/api-reference/logs-v1](https://hathora.dev/docs/api-reference/logs-v1)
-- **Base URL:** `https://api.hathora.dev`
-
-#### Tags
-
-- Logs
-- Observability
-- Streaming
-
-#### Properties
-
-- [Documentation](https://hathora.dev/docs)
-- [API Reference](https://hathora.dev/api#tag/LogsV1)
-- [OpenAPI](openapi/hathora-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/hathora.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/hathora.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Hathora Metrics API
-
-Read time-series metrics for a process — CPU, memory, egress rate, total egress, and active connections — to monitor game server health and capacity.
-
-- **Human URL:** [https://hathora.dev/docs/api-reference/metrics-v1](https://hathora.dev/docs/api-reference/metrics-v1)
-- **Base URL:** `https://api.hathora.dev`
-
-#### Tags
-
-- Metrics
-- Monitoring
-- Telemetry
-
-#### Properties
-
-- [Documentation](https://hathora.dev/docs)
-- [API Reference](https://hathora.dev/api#tag/MetricsV1)
-- [OpenAPI](openapi/hathora-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/hathora.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/hathora.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Hathora Billing API
-
-Read account balance and invoice history, view the stored payment method, and initialize a Stripe customer portal URL for self-service billing management.
-
-- **Human URL:** [https://hathora.dev/docs/api-reference/billing-v1](https://hathora.dev/docs/api-reference/billing-v1)
-- **Base URL:** `https://api.hathora.dev`
-
-#### Tags
-
-- Billing
-- Invoices
-- Payments
-
-#### Properties
-
-- [Documentation](https://hathora.dev/docs)
-- [API Reference](https://hathora.dev/api#tag/BillingV1)
-- [OpenAPI](openapi/hathora-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/hathora.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/hathora.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Hathora Tokens API
-
-Create, list, and revoke the organization API tokens (hathoraDevToken) used as bearer credentials for the management endpoints of the Hathora Cloud API.
-
-- **Human URL:** [https://hathora.dev/docs/api-reference/tokens-v1](https://hathora.dev/docs/api-reference/tokens-v1)
-- **Base URL:** `https://api.hathora.dev`
-
-#### Tags
-
-- Tokens
-- Organization
-- API Keys
-
-#### Properties
-
-- [Documentation](https://hathora.dev/docs)
-- [API Reference](https://hathora.dev/api#tag/TokensV1)
-- [OpenAPI](openapi/hathora-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/hathora.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/hathora.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-## Common Properties
-
-- [GitHub Organization](https://github.com/hathora)
-- [LinkedIn](https://www.linkedin.com/company/hathora)
 - [Website](https://hathora.dev/)
 - [Documentation](https://hathora.dev/docs)
-- [Plans](plans/hathora-plans-pricing.yml)
-- [Rate Limits](rate-limits/hathora-rate-limits.yml)
-- [Fin Ops](finops/hathora-finops.yml)
+- [Blog](https://gamefabric.com/blog)
+- [GitHub](https://github.com/hathora)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 21.8** — emerging · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 41.4 |
+| Contract governance | 0.0 |
+| Operational transparency | 10.5 |
+| Developer ergonomics | 15.5 |
+| Access clarity | 7.9 |
+
+**Agent readiness 20.4** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | partial |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 11.8** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/hathora/](https://apis.io/providers/hathora/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Hathora: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/hathora/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
